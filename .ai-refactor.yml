@@ -1,0 +1,14 @@
+language: python
+tests: "pytest tests/"
+branch_prefix: "ai-refactor"
+# Configure your specific models here
+models:
+  coder: "ollama/qwen2.5-coder:14b"
+  planner: "ollama/gpt-oss:20b" 
+  # planner: "ollama/wangshenzhi/os-copilot-20b" # Example of using a larger model for planning
+spec_kit:
+  enabled: true
+  specs_dir: "specs"
+task_presets:
+  modernize:
+    prompt: "Generate a simple trello-like kanban board app for meetings and notes"
