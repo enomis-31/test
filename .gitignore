@@ -21,3 +21,4 @@
 # Repo-level cache
 .cache/
 .cache/*
+.aider*
