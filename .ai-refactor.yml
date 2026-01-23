@@ -1,6 +1,9 @@
 language: python
 tests: "pytest tests/"
 branch_prefix: "ai-refactor"
+# Configure Ollama endpoint (default: http://localhost:11434)
+# Can also be set via OLLAMA_BASE_URL environment variable
+ollama_base_url: "http://192.168.1.4:11434"
 # Configure your specific models here
 models:
   coder: "ollama/qwen2.5-coder:14b"
