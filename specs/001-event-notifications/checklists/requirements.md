@@ -35,3 +35,6 @@
 - Specification is ready for `/speckit.plan` or `/speckit.clarify`
 - Assumptions clearly documented (calendar events exist, web browser environment)
 - Edge cases cover multiple simultaneous events, timing precision, and app state scenarios
+- **Updated**: Added User Story 2 (P2 - Dismiss notifications) and User Story 3 (P3 - View event details)
+- Total user stories: 3 (P1: Core notifications, P2: Dismiss functionality, P3: Event details access)
+- All user stories are independently testable and deliver incremental value
