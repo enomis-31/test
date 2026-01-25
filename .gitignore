@@ -1,24 +1,24 @@
-# Spec Kit runtime
-.specify/
-.specify/*
+# # Spec Kit runtime
+# .specify/
+# .specify/*
 
-# Cursor agent runtime
-.cursor/
-.cursor/*
+# # Cursor agent runtime
+# .cursor/
+# .cursor/*
 
-# Ralph runtime (se usi ralph install)
-.ralph/
-.ralph/*
+# # Ralph runtime (se usi ralph install)
+# .ralph/
+# .ralph/*
 
-# CrewAI runtime (solo se UserProxy/Agents salvano stato)
-.agents/
-.agents/*
+# # CrewAI runtime (solo se UserProxy/Agents salvano stato)
+# .agents/
+# .agents/*
 
-# ai-refactor local artifacts (solo se presenti)
-.ai-refactor/
-.ai-refactor/*
+# # ai-refactor local artifacts (solo se presenti)
+# .ai-refactor/
+# .ai-refactor/*
 
-# Repo-level cache
-.cache/
-.cache/*
-.aider*
+# # Repo-level cache
+# .cache/
+# .cache/*
+# .aider*
