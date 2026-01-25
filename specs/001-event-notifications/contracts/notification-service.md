@@ -15,8 +15,8 @@ Monitors calendar events and triggers notifications when event times arrive.
 Starts the event monitoring process. Begins polling IndexedDB for events every 60 seconds.
 
 **Preconditions**:
-- IndexedDB is accessible
-- Calendar events exist in storage
+- localStorage is accessible
+- Calendar events exist in localStorage (stored as JSON array)
 
 **Postconditions**:
 - Polling interval is active
@@ -27,7 +27,8 @@ Starts the event monitoring process. Begins polling IndexedDB for events every 6
 - May trigger notifications when events are detected
 
 **Error Handling**:
-- If IndexedDB access fails, log error and retry after delay
+- If localStorage access fails (e.g., private browsing), log error and retry after delay
+- If JSON parsing fails, log error and continue with next interval
 - If polling fails, continue with next interval
 
 ---
@@ -54,7 +55,7 @@ Stops the event monitoring process. Clears the polling interval.
 Checks all calendar events and triggers notifications for events whose start time falls within ±5 seconds of current time.
 
 **Preconditions**:
-- IndexedDB is accessible
+- localStorage is accessible
 - Current system time is available
 
 **Postconditions**:
@@ -64,14 +65,16 @@ Checks all calendar events and triggers notifications for events whose start tim
 **Algorithm**:
 1. Get current time: `const now = Date.now()`
 2. Calculate time window: `[now - 5000, now + 5000]`
-3. Query IndexedDB for events where `startTime` is within window
-4. For each matching event:
+3. Retrieve events from localStorage: `JSON.parse(localStorage.getItem('calendar_events') || '[]')`
+4. Filter events where `startTime` falls within time window
+5. For each matching event:
    - Check if notification already triggered (by eventId + time window)
    - If not, create and dispatch notification
    - Mark event as notified for this time window
 
 **Error Handling**:
-- If query fails, log error and return (don't throw)
+- If localStorage access fails, log error and return (don't throw)
+- If JSON parsing fails, log error and return (don't throw)
 - If notification creation fails, log error and continue with next event
 
 ---
@@ -146,7 +149,7 @@ Displays event details modal for the given notification.
 
 **Preconditions**:
 - Notification exists in state
-- Associated event exists in IndexedDB
+- Associated event exists in localStorage
 
 **Postconditions**:
 - Notification popup is dismissed
@@ -156,12 +159,12 @@ Displays event details modal for the given notification.
 **Side Effects**:
 - Dismisses notification popup
 - Opens event details modal
-- Queries IndexedDB for full event data
+- Retrieves event data from localStorage array
 
 **Error Handling**:
 - If notification not found, log error and return
-- If event not found in IndexedDB, show error message in modal
-- If query fails, display error state in modal
+- If event not found in localStorage, show error message in modal
+- If localStorage access fails, display error state in modal
 
 ---
 
@@ -226,7 +229,7 @@ Queries IndexedDB for events whose start time falls within the specified time wi
 **Returns**: Array of CalendarEvent objects within the time window
 
 **Preconditions**:
-- IndexedDB is accessible
+- localStorage is accessible
 - Time window is valid (startTime < endTime)
 
 **Postconditions**:
@@ -234,8 +237,9 @@ Queries IndexedDB for events whose start time falls within the specified time wi
 - Results are sorted by startTime
 
 **Error Handling**:
-- If IndexedDB access fails, return empty array and log error
-- If query fails, return empty array and log error
+- If localStorage access fails, return empty array and log error
+- If JSON parsing fails, return empty array and log error
+- If filtering fails, return empty array and log error
 
 ---
 
@@ -249,14 +253,15 @@ Retrieves a single event by its unique ID.
 **Returns**: CalendarEvent object or null if not found
 
 **Preconditions**:
-- IndexedDB is accessible
+- localStorage is accessible
 - Event ID is valid string
 
 **Postconditions**:
 - Event is returned if exists, null otherwise
 
 **Error Handling**:
-- If IndexedDB access fails, return null and log error
+- If localStorage access fails, return null and log error
+- If JSON parsing fails, return null and log error
 - If event not found, return null (not an error)
 
 ---

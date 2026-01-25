@@ -26,9 +26,9 @@ Represents a scheduled appointment or meeting that can trigger notifications.
 - `description` is optional but if provided, max 1000 characters
 
 **Storage**:
-- Stored in IndexedDB `events` object store
-- Indexed by `startTime` for efficient time-based queries
-- Indexed by `id` for direct lookups
+- Stored in browser localStorage as JSON array under key `calendar_events`
+- Events stored as array of objects: `[{ id, title, startTime, description?, ... }, ...]`
+- Simple key-value storage, no complex indexing needed for test app
 
 **Relationships**:
 - None (events are independent entities)
@@ -75,8 +75,8 @@ Represents the current state of a displayed notification.
 
 ### Notification Trigger Flow
 
-1. **Event Monitoring**: `EventMonitor` service polls IndexedDB every 60 seconds
-2. **Time Check**: For each event, check if `startTime` falls within ±5 seconds of current time
+1. **Event Monitoring**: `EventMonitor` service polls localStorage every 60 seconds
+2. **Time Check**: For each event in localStorage array, check if `startTime` falls within ±5 seconds of current time
 3. **Duplicate Prevention**: Check if notification already triggered for this event (by `eventId` + time window)
 4. **Notification Creation**: Create `NotificationState` object with event data
 5. **State Update**: Add notification to React Context state
@@ -94,39 +94,44 @@ Represents the current state of a displayed notification.
 
 1. **User Action**: User clicks notification popup (not dismiss button)
 2. **State Update**: Set `isDetailsShown: true`, `isDismissed: true` (notification popup dismissed)
-3. **Data Fetch**: Retrieve full event data from IndexedDB by `eventId`
+3. **Data Fetch**: Retrieve full event data from localStorage array by `eventId`
 4. **UI Display**: EventDetailsModal component displays event information
 5. **Close Action**: User closes modal, return to main view
 
-## IndexedDB Schema
+## localStorage Schema
 
-### Object Store: `events`
+### Storage Key: `calendar_events`
 
 ```typescript
-{
-  name: 'events',
-  keyPath: 'id',
-  indexes: [
-    { name: 'startTime', keyPath: 'startTime', unique: false },
-    { name: 'title', keyPath: 'title', unique: false }
-  ]
-}
+// Stored as JSON string in localStorage
+localStorage.setItem('calendar_events', JSON.stringify([
+  { id: 'event-1', title: 'Meeting', startTime: '2026-01-25T14:30:00Z', ... },
+  { id: 'event-2', title: 'Appointment', startTime: '2026-01-25T15:00:00Z', ... },
+  // ... more events
+]));
 ```
 
 ### Query Patterns
 
-- **Time-based query**: Get events where `startTime` is within time window
+- **Get all events**: Parse JSON from localStorage
   ```typescript
-  const range = IDBKeyRange.bound(
-    new Date(currentTime - 5000).toISOString(),
-    new Date(currentTime + 5000).toISOString()
-  );
-  index.get(range);
+  const events = JSON.parse(localStorage.getItem('calendar_events') || '[]');
   ```
 
-- **Single event lookup**: Get event by `id`
+- **Time-based filter**: Filter events where `startTime` is within time window
   ```typescript
-  store.get(eventId);
+  const now = Date.now();
+  const windowStart = now - 5000;
+  const windowEnd = now + 5000;
+  const matchingEvents = events.filter(event => {
+    const eventTime = new Date(event.startTime).getTime();
+    return eventTime >= windowStart && eventTime <= windowEnd;
+  });
+  ```
+
+- **Single event lookup**: Find event by `id` in array
+  ```typescript
+  const event = events.find(e => e.id === eventId);
   ```
 
 ## State Management
@@ -155,13 +160,16 @@ interface NotificationState {
 **Current Version**: 1.0.0
 
 **Future Considerations**:
-- If event schema changes, IndexedDB migration may be needed
+- If event schema changes, localStorage data structure may need migration (simple version check + data transformation)
 - Notification state is ephemeral, no migration needed
 - Event data is managed by calendar feature, this feature only reads
+- localStorage has ~5-10MB limit per domain, sufficient for test app but may need IndexedDB if scaling to thousands of events
 
 ## Performance Considerations
 
-- IndexedDB queries by `startTime` are efficient with proper indexing
+- localStorage access is synchronous and fast for small datasets (typical calendar: dozens to hundreds of events)
+- For time-based filtering, iterate through events array and filter in memory (acceptable for test app scale)
 - Notification state kept in memory (React Context) for fast UI updates
 - Old notifications auto-cleared to prevent memory leaks
-- Event data cached in notification state to avoid repeated IndexedDB reads
+- Event data cached in notification state to avoid repeated localStorage reads
+- Note: For production apps with thousands of events, IndexedDB would be better, but localStorage is sufficient for this test application

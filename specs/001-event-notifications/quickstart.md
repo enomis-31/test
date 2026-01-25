@@ -9,8 +9,8 @@
 - Next.js 14+ project initialized
 - ShadCN UI installed and configured
 - Tailwind CSS configured
-- IndexedDB accessible (modern browser)
-- Calendar events exist in IndexedDB (created by calendar feature)
+- localStorage accessible (modern browser)
+- Calendar events exist in localStorage (created by calendar feature, stored as JSON array under key `calendar_events`)
 
 ## Setup Steps
 
@@ -170,7 +170,11 @@ export function NotificationManager() {
 
 ### Manual Test: Basic Notification
 
-1. **Create a test event** in IndexedDB with start time 1 minute in the future
+1. **Create a test event** in localStorage with start time 1 minute in the future
+   ```javascript
+   const events = [{ id: 'test-1', title: 'Test Event', startTime: new Date(Date.now() + 60000).toISOString() }];
+   localStorage.setItem('calendar_events', JSON.stringify(events));
+   ```
 2. **Open the app** and wait for notification
 3. **Verify**:
    - Notification popup appears within 5 seconds of event time
@@ -233,9 +237,10 @@ describe('Notification Flow', () => {
 
 **Check**:
 - EventMonitor is started (check console logs)
-- Events exist in IndexedDB with valid startTime
+- Events exist in localStorage with valid startTime (check `localStorage.getItem('calendar_events')`)
 - Current time is within ±5 seconds of event time
 - Browser tab is active (FR-006 requirement)
+- localStorage is accessible (not in private browsing mode)
 
 ### Issue: Sound not playing
 

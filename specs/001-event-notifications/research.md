@@ -116,25 +116,27 @@
 
 ### 6. Event Storage and Retrieval
 
-**Decision**: Use IndexedDB via `localForage` or native `indexedDB` API for event storage
+**Decision**: Use browser localStorage for event storage (simple JSON array)
 
 **Rationale**:
-- IndexedDB provides better performance than localStorage for larger datasets
-- Supports structured data storage (events with IDs, titles, times)
-- Can query events efficiently by time range
-- Aligns with constitution requirement (localStorage or IndexedDB)
-- `localForage` provides simpler API but native IndexedDB is sufficient for MVP
+- localStorage is the simplest storage mechanism for a front-end only test app
+- No complex IndexedDB setup or async operations needed
+- Sufficient for typical calendar event volumes (dozens to hundreds of events)
+- Aligns with constitution requirement (localStorage or IndexedDB) and user preference for simplicity
+- Synchronous API makes querying straightforward
+- Perfect for test/development scenarios where complexity should be minimized
 
 **Alternatives considered**:
-- localStorage: Simpler but less efficient for querying by time
+- IndexedDB: More complex setup, async operations, unnecessary for test app scale
 - In-memory only: Data lost on refresh (violates data persistence requirement)
 - External database: Violates constitution (no backend)
 
 **Implementation notes**:
-- Store events with structure: `{ id, title, startTime, description? }`
-- Index events by `startTime` for efficient time-based queries
-- Use async/await for IndexedDB operations
-- Handle IndexedDB availability (fallback to localStorage if needed)
+- Store events as JSON array in localStorage under key `calendar_events`
+- Structure: `[{ id, title, startTime, description? }, ...]`
+- For time-based queries, parse JSON and filter array in memory
+- Handle localStorage quota limits (typically 5-10MB, sufficient for test app)
+- Simple error handling if localStorage is unavailable (private browsing mode)
 
 ### 7. Notification State Management
 
@@ -167,7 +169,7 @@
 | Audio Playback | HTML5 `Audio` API | Native, simple, no dependencies |
 | PWA Support | `next-pwa` | Standard Next.js PWA solution |
 | Mobile Design | Tailwind CSS responsive | Already in stack, mobile-first approach |
-| Event Storage | IndexedDB | Efficient querying, constitution-compliant |
+| Event Storage | localStorage | Simple, front-end only, sufficient for test app |
 | State Management | React Context + useReducer | Simple, no external dependencies |
 
 ## Dependencies to Add
@@ -202,7 +204,7 @@
 - ✅ Audio implementation: HTML5 Audio API
 - ✅ PWA setup: next-pwa package
 - ✅ Mobile responsiveness: Tailwind CSS with iPhone 15 breakpoints
-- ✅ Data storage: IndexedDB for events
+- ✅ Data storage: localStorage for events (simple JSON array)
 - ✅ State management: React Context + useReducer
 
 All technical decisions align with constitution principles (Simplicity First, Component-Based Architecture) and user requirements.

@@ -9,13 +9,13 @@
 
 Implement calendar event notifications that alert users when scheduled event times arrive while the app is open. The system monitors calendar events, detects when event start times fall within a ±5 second window of the current time, and displays visible popup notifications with optional sound alerts. Users can dismiss notifications and view event details. 
 
-**Technical Approach**: Built as a Next.js 14+ Progressive Web Application using ShadCN UI (Sonner/Toast) components and Tailwind CSS. Event monitoring uses React `useEffect` with `setInterval` for 60-second polling. Audio playback via HTML5 Audio API. State management with React Context + useReducer. Event storage in IndexedDB. Optimized for mobile devices (iPhone 15 reference: 390x844px) with a modern, professional design. PWA capabilities via `next-pwa` package.
+**Technical Approach**: Built as a Next.js 14+ Progressive Web Application using ShadCN UI (Sonner/Toast) components and Tailwind CSS. Event monitoring uses React `useEffect` with `setInterval` for 60-second polling. Audio playback via HTML5 Audio API. State management with React Context + useReducer. Event storage in browser localStorage (simple JSON array - front-end only test app). Optimized for mobile devices (iPhone 15 reference: 390x844px) with a modern, professional design. PWA capabilities via `next-pwa` package.
 
 ## Technical Context
 
 **Language/Version**: TypeScript 5.x, JavaScript (ES2022+)  
 **Primary Dependencies**: Next.js 14+ (App Router), React 18+, ShadCN UI, Tailwind CSS 3.x, date-fns (for date/time operations), next-pwa (for PWA capabilities)  
-**Storage**: Browser localStorage/IndexedDB (per constitution - no backend required)  
+**Storage**: Browser localStorage (simple JSON array storage - per user clarification, front-end only test app)  
 **Testing**: Jest, React Testing Library, Playwright (for integration tests)  
 **Target Platform**: Web browsers (Chrome, Firefox, Safari), Progressive Web App (PWA) for mobile devices, iPhone 15+ as reference design  
 **Project Type**: Web application (Next.js frontend)  
@@ -47,10 +47,10 @@ Implement calendar event notifications that alert users when scheduled event tim
 - **Status**: PASS - Architecture aligns with component-based approach
 
 ### IV. Data Persistence ✅
-- Calendar events stored in localStorage/IndexedDB (per constitution)
+- Calendar events stored in localStorage (simple JSON array - per user clarification)
 - No backend server required
-- Notification state (dismissed notifications) can use localStorage
-- **Status**: PASS - Uses browser-local storage as required
+- Notification state (dismissed notifications) can use localStorage or React state
+- **Status**: PASS - Uses browser-local storage as required, simplified for test app
 
 ### V. Progressive Enhancement ✅
 - User Story 1 (P1) provides core notification functionality independently

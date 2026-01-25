@@ -103,12 +103,15 @@ As a user who receives a notification, I want to be able to click on the notific
 - Q: How should the system uniquely identify calendar events for notification tracking? → A: Each event has a unique identifier (ID) that distinguishes it from other events, even if they share the same title and time
 - Q: Should notifications trigger at the exact second when event time matches current time, or within a small time window? → A: Trigger within a small time window (e.g., ±5 seconds around event time)
 - Q: Should sound notification always play, be user-configurable, or have a default behavior? → A: Sound plays by default but can be muted/dismissed per notification (simple toggle, no persistent preferences)
+- Q: What storage mechanism should be used for calendar events? → A: localStorage (simple, front-end only, no IndexedDB complexity needed for test app)
 
 ## Assumptions
 
 - Calendar events already exist in the system (this feature assumes events are created through a separate calendar feature)
+- Events are stored in browser localStorage (simple key-value storage, no IndexedDB complexity)
 - Events have a defined start time that can be compared to the current system time
 - Each calendar event has a unique identifier (ID) that distinguishes it from other events
 - The application runs in a web browser environment where JavaScript can access system time and trigger notifications
+- This is a front-end only test application - no backend server, no complex storage mechanisms
 - Users expect notifications only when actively using the app (not background/browser notifications when app is closed)
 - Notification preferences (sound on/off, notification style) can be handled in a future enhancement - for MVP, a simple popup with optional sound is sufficient
