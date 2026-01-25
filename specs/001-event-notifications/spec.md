@@ -59,18 +59,18 @@ As a user who receives a notification, I want to be able to click on the notific
 - What happens when multiple events are scheduled for the exact same time?
 - How does the system handle events that span multiple hours (should notification trigger at start time only)?
 - What happens if the system clock changes while the app is running?
-- How does the system handle events scheduled for times very close together (e.g., 14:30:00 and 14:30:01)?
+- How does the system handle events scheduled for times very close together (e.g., 14:30:00 and 14:30:01)? (Both will trigger within the ±5 second window)
 - What happens if the user's browser tab is inactive but the app is still open?
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
-- **FR-001**: System MUST monitor all calendar events and detect when an event's scheduled start time matches the current time
-- **FR-002**: System MUST trigger a notification when an event's start time is reached while the application is open and active
+- **FR-001**: System MUST monitor all calendar events and detect when an event's scheduled start time falls within a small time window (e.g., ±5 seconds) of the current time
+- **FR-002**: System MUST trigger a notification when an event's start time falls within the acceptable time window while the application is open and active
 - **FR-003**: System MUST display a visible notification (popup, alert, or similar UI element) that shows the event title and scheduled time
-- **FR-004**: System MUST provide an audible notification (sound) option to alert users even if they're not looking at the screen
-- **FR-005**: System MUST only trigger notifications for events whose start time matches the current time (not for past or future events)
+- **FR-004**: System MUST provide an audible notification (sound) that plays by default when a notification appears, with the ability for users to mute/dismiss the sound for individual notifications
+- **FR-005**: System MUST only trigger notifications for events whose start time falls within the acceptable time window of the current time (not for past events beyond the window or future events)
 - **FR-006**: System MUST only trigger notifications when the application is open and the browser tab is active
 - **FR-007**: System MUST handle multiple events scheduled for the same time by showing notifications for all of them
 - **FR-008**: System MUST check for upcoming events at regular intervals (at least once per minute) to detect when event times arrive
@@ -81,13 +81,13 @@ As a user who receives a notification, I want to be able to click on the notific
 
 ### Key Entities *(include if feature involves data)*
 
-- **Calendar Event**: Represents a scheduled appointment or meeting with a start time. Must have at minimum: event title, scheduled start time (date and time). The notification system reads these events to determine when to trigger alerts.
+- **Calendar Event**: Represents a scheduled appointment or meeting with a start time. Must have at minimum: unique identifier (ID), event title, scheduled start time (date and time). The unique ID distinguishes each event from others, even if they share the same title and time. The notification system reads these events to determine when to trigger alerts.
 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
 
-- **SC-001**: Users receive notifications for 100% of events whose start time matches the current time when the app is open
+- **SC-001**: Users receive notifications for 100% of events whose start time falls within the acceptable time window (e.g., ±5 seconds) when the app is open
 - **SC-002**: Notifications appear within 5 seconds of the event's scheduled start time
 - **SC-003**: Users can clearly identify which event triggered the notification (event title visible in notification)
 - **SC-004**: System correctly handles up to 10 simultaneous events scheduled for the same time without missing any notifications
@@ -96,10 +96,19 @@ As a user who receives a notification, I want to be able to click on the notific
 - **SC-007**: 100% of notifications can be successfully dismissed without leaving UI artifacts
 - **SC-008**: Users can access event details from notifications in under 2 seconds after clicking the notification
 
+## Clarifications
+
+### Session 2026-01-25
+
+- Q: How should the system uniquely identify calendar events for notification tracking? → A: Each event has a unique identifier (ID) that distinguishes it from other events, even if they share the same title and time
+- Q: Should notifications trigger at the exact second when event time matches current time, or within a small time window? → A: Trigger within a small time window (e.g., ±5 seconds around event time)
+- Q: Should sound notification always play, be user-configurable, or have a default behavior? → A: Sound plays by default but can be muted/dismissed per notification (simple toggle, no persistent preferences)
+
 ## Assumptions
 
 - Calendar events already exist in the system (this feature assumes events are created through a separate calendar feature)
 - Events have a defined start time that can be compared to the current system time
+- Each calendar event has a unique identifier (ID) that distinguishes it from other events
 - The application runs in a web browser environment where JavaScript can access system time and trigger notifications
 - Users expect notifications only when actively using the app (not background/browser notifications when app is closed)
 - Notification preferences (sound on/off, notification style) can be handled in a future enhancement - for MVP, a simple popup with optional sound is sufficient
