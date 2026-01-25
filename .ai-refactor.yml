@@ -6,8 +6,8 @@ branch_prefix: "ai-refactor"
 ollama_base_url: "http://192.168.1.4:11434"
 # Configure your specific models here
 models:
-  coder: "ollama/qwen2.5-coder:14b"
-  planner: "ollama/gpt-oss:20b" 
+  coder: "ollama/llama3.1:8b"
+  planner: "ollama/llama3.1:8b" 
   # planner: "ollama/wangshenzhi/os-copilot-20b" # Example of using a larger model for planning
 spec_kit:
   enabled: true
