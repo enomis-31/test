@@ -10,7 +10,7 @@
     "files": [],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T002",
@@ -23,7 +23,7 @@
     "files": [],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T003",
@@ -36,7 +36,7 @@
     "files": [],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T004",
@@ -49,7 +49,7 @@
     "files": [],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T005",
@@ -62,7 +62,7 @@
     "files": [],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T006",
@@ -75,7 +75,7 @@
     "files": [],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T007",
@@ -88,7 +88,7 @@
     "files": [],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T008",
@@ -103,7 +103,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T009",
@@ -118,7 +118,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T010",
@@ -133,7 +133,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T011",
@@ -148,7 +148,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T012",
@@ -163,7 +163,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T013",
@@ -178,7 +178,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T014",
@@ -193,7 +193,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T015",
@@ -208,7 +208,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T016",
@@ -227,7 +227,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T017",
@@ -246,7 +246,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T018",
@@ -265,7 +265,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T019",
@@ -284,7 +284,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T020",
@@ -303,7 +303,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T021",
@@ -322,7 +322,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T022",
@@ -341,7 +341,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T023",
@@ -360,7 +360,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T024",
@@ -379,7 +379,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T025",
@@ -396,7 +396,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T026",
@@ -415,7 +415,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T027",
@@ -434,7 +434,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T028",
@@ -453,7 +453,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T029",
@@ -472,7 +472,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T030",
@@ -491,7 +491,7 @@
       "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T031",
@@ -510,7 +510,7 @@
       "Given a notification popup is displayed, When I click outside the notification popup area, Then the notification may optionally be dismissed (nice-to-have, not mandatory for MVP)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T032",
@@ -529,7 +529,7 @@
       "Given a notification popup is displayed, When I click outside the notification popup area, Then the notification may optionally be dismissed (nice-to-have, not mandatory for MVP)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T033",
@@ -548,7 +548,7 @@
       "Given a notification popup is displayed, When I click outside the notification popup area, Then the notification may optionally be dismissed (nice-to-have, not mandatory for MVP)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T034",
@@ -567,7 +567,7 @@
       "Given a notification popup is displayed, When I click outside the notification popup area, Then the notification may optionally be dismissed (nice-to-have, not mandatory for MVP)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T035",
@@ -586,7 +586,7 @@
       "Given a notification popup is displayed, When I click outside the notification popup area, Then the notification may optionally be dismissed (nice-to-have, not mandatory for MVP)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T036",
@@ -603,7 +603,7 @@
       "Given a notification popup is displayed, When I click outside the notification popup area, Then the notification may optionally be dismissed (nice-to-have, not mandatory for MVP)"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T037",
@@ -622,7 +622,7 @@
       "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T038",
@@ -641,7 +641,7 @@
       "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T039",
@@ -660,7 +660,7 @@
       "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T040",
@@ -679,7 +679,7 @@
       "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T041",
@@ -698,7 +698,7 @@
       "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T042",
@@ -717,7 +717,7 @@
       "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T043",
@@ -736,7 +736,7 @@
       "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T044",
@@ -755,7 +755,7 @@
       "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
     ],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T045",
@@ -770,7 +770,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T046",
@@ -785,7 +785,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T047",
@@ -800,7 +800,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T048",
@@ -815,7 +815,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T049",
@@ -828,7 +828,7 @@
     "files": [],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T050",
@@ -843,7 +843,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T051",
@@ -858,7 +858,7 @@
     ],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T052",
@@ -871,7 +871,7 @@
     "files": [],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T053",
@@ -884,7 +884,7 @@
     "files": [],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T054",
@@ -897,7 +897,7 @@
     "files": [],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T055",
@@ -910,7 +910,7 @@
     "files": [],
     "definition_of_done": [],
     "last_error": null,
-    "feature": "001-event-notification"
+    "feature": "001-event-notifications"
   },
   {
     "id": "T001",
