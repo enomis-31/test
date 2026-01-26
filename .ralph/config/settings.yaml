@@ -1,0 +1,5 @@
+manager_model: gpt-4o-mini
+max_errors: 3
+max_iterations: 1
+spec_dir: specs
+worker_model: qwen2.5-coder:7b

@@ -1,0 +1,1778 @@
+[
+  {
+    "id": "T001",
+    "phase": "Setup (Shared Infrastructure)",
+    "parallel": false,
+    "user_story": null,
+    "title": "Create Next.js 14+ project structure with App Router in repository root",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T002",
+    "phase": "Setup (Shared Infrastructure)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Install and configure dependencies: next, react, react-dom, typescript, tailwindcss, shadcn-ui, sonner, date-fns, next-pwa",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T003",
+    "phase": "Setup (Shared Infrastructure)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Configure Tailwind CSS with mobile-first responsive design (iPhone 15: 390x844px breakpoints)",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T004",
+    "phase": "Setup (Shared Infrastructure)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Initialize ShadCN UI components library and install Sonner toast component",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T005",
+    "phase": "Setup (Shared Infrastructure)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Configure next-pwa for Progressive Web Application support in next.config.js",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T006",
+    "phase": "Setup (Shared Infrastructure)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Setup TypeScript configuration (tsconfig.json) with strict mode",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T007",
+    "phase": "Setup (Shared Infrastructure)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Create project directory structure: app/components/notifications/, app/lib/services/, app/lib/hooks/, app/lib/utils/, app/types/, public/sounds/",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T008",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Create CalendarEvent type definition in app/types/event.ts with id, title, startTime, description? attributes",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/types/event.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T009",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Create NotificationState type definition in app/types/event.ts with id, eventId, eventTitle, eventStartTime, triggeredAt, isDismissed, isSoundMuted, isDetailsShown attributes",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/types/event.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T010",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Create storage utility functions in app/lib/utils/storage.ts: getEventsFromStorage(), getEventById(eventId), handle localStorage JSON parsing with error handling",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/utils/storage.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T011",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Create date utility functions in app/lib/utils/date-utils.ts: isEventTimeInWindow(eventStartTime, windowSeconds), formatEventTime(startTime), getCurrentTime()",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/utils/date-utils.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T012",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": false,
+    "user_story": null,
+    "title": "Create NotificationContext and Provider in app/lib/hooks/use-notifications.ts with React Context API and useReducer for state management",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/hooks/use-notifications.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T013",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": false,
+    "user_story": null,
+    "title": "Implement notification reducer actions in app/lib/hooks/use-notifications.ts: ADD_NOTIFICATION, DISMISS_NOTIFICATION, SHOW_EVENT_DETAILS, CLEAR_OLD_NOTIFICATIONS",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/hooks/use-notifications.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T014",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": false,
+    "user_story": null,
+    "title": "Create useNotifications custom hook in app/lib/hooks/use-notifications.ts that provides access to notification state and actions",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/hooks/use-notifications.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T015",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": false,
+    "user_story": null,
+    "title": "Add NotificationProvider to app layout in app/layout.tsx to wrap application with notification context",
+    "description": "**Checkpoint**: Foundation ready - user story implementation can now begin in parallel",
+    "status": "todo",
+    "files": [
+      "app/layout.tsx"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T016",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": true,
+    "user_story": "US1",
+    "title": "Create EventMonitor service class in app/lib/services/event-monitor.ts with startMonitoring() and stopMonitoring() methods",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/services/event-monitor.ts"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T017",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Implement polling logic in app/lib/services/event-monitor.ts: setInterval every 60 seconds, check localStorage for events",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/services/event-monitor.ts"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T018",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Implement time window check in app/lib/services/event-monitor.ts: filter events where startTime falls within \u00b15 seconds of current time",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/services/event-monitor.ts"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T019",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Implement duplicate prevention in app/lib/services/event-monitor.ts: track notified events by eventId + time window to prevent duplicate notifications",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/services/event-monitor.ts"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T020",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Create NotificationService class in app/lib/services/notification-service.ts with triggerNotification(event) method",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/services/notification-service.ts"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T021",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Implement notification creation in app/lib/services/notification-service.ts: create NotificationState object and dispatch ADD_NOTIFICATION action",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/services/notification-service.ts"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T022",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": true,
+    "user_story": "US1",
+    "title": "Create NotificationPopup component in app/components/notifications/NotificationPopup.tsx using ShadCN UI Sonner/Toast",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/NotificationPopup.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T023",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Implement notification display in app/components/notifications/NotificationPopup.tsx: show event title and scheduled time, mobile-responsive design (iPhone 15 optimized)",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/NotificationPopup.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T024",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Create audio service in app/lib/services/notification-service.ts: playNotificationSound() using HTML5 Audio API",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/services/notification-service.ts"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T025",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Add notification sound file to public/sounds/notification.mp3 (short, pleasant sound < 2 seconds)",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T026",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Integrate audio playback in app/lib/services/notification-service.ts: play sound by default when notification triggers, handle browser autoplay policies",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/services/notification-service.ts"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T027",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Create NotificationManager client component in app/components/notifications/NotificationManager.tsx that initializes EventMonitor on mount",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/NotificationManager.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T028",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Implement tab visibility check in app/lib/services/event-monitor.ts: only trigger notifications when browser tab is active (FR-006 requirement)",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/services/event-monitor.ts"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T029",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Add NotificationManager to app layout in app/layout.tsx to start event monitoring when app loads",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/layout.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T030",
+    "phase": "User Story 1 - Receive Notification When Event Time Arrives (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Implement multiple simultaneous notifications support in app/components/notifications/NotificationList.tsx: display up to 10 notifications (SC-004 requirement)",
+    "description": "**Checkpoint**: At this point, User Story 1 should be fully functional and testable independently. Users can receive notifications when event times arrive.",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/NotificationList.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have a calendar event scheduled for 14:30, When the current time reaches 14:30 and the app is open, Then I receive a notification (popup, alert, or sound) informing me about the event",
+      "Given I have multiple calendar events scheduled for different times, When each event's scheduled time arrives while the app is open, Then I receive a notification for each event at its respective time",
+      "Given I have a calendar event scheduled, When the app is closed or not in focus, Then no notification appears (this feature only works when app is open)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T031",
+    "phase": "User Story 2 - Dismiss Notification Popup (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Add dismiss button to NotificationPopup component in app/components/notifications/NotificationPopup.tsx using ShadCN UI Button component",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/NotificationPopup.tsx"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed on screen, When I click a dismiss or close button on the notification, Then the popup disappears and is removed from the interface",
+      "Given multiple notification popups are displayed simultaneously, When I dismiss one notification, Then only that specific notification is removed while others remain visible",
+      "Given a notification popup is displayed, When I click outside the notification popup area, Then the notification may optionally be dismissed (nice-to-have, not mandatory for MVP)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T032",
+    "phase": "User Story 2 - Dismiss Notification Popup (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Implement dismiss handler in app/components/notifications/NotificationPopup.tsx: call dismissNotification action from context on button click",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/NotificationPopup.tsx"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed on screen, When I click a dismiss or close button on the notification, Then the popup disappears and is removed from the interface",
+      "Given multiple notification popups are displayed simultaneously, When I dismiss one notification, Then only that specific notification is removed while others remain visible",
+      "Given a notification popup is displayed, When I click outside the notification popup area, Then the notification may optionally be dismissed (nice-to-have, not mandatory for MVP)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T033",
+    "phase": "User Story 2 - Dismiss Notification Popup (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Update notification reducer in app/lib/hooks/use-notifications.ts: handle DISMISS_NOTIFICATION action, set isDismissed flag, remove from state",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/hooks/use-notifications.ts"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed on screen, When I click a dismiss or close button on the notification, Then the popup disappears and is removed from the interface",
+      "Given multiple notification popups are displayed simultaneously, When I dismiss one notification, Then only that specific notification is removed while others remain visible",
+      "Given a notification popup is displayed, When I click outside the notification popup area, Then the notification may optionally be dismissed (nice-to-have, not mandatory for MVP)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T034",
+    "phase": "User Story 2 - Dismiss Notification Popup (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Implement immediate UI removal in app/components/notifications/NotificationPopup.tsx: animate out notification on dismiss, remove from DOM after animation",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/NotificationPopup.tsx"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed on screen, When I click a dismiss or close button on the notification, Then the popup disappears and is removed from the interface",
+      "Given multiple notification popups are displayed simultaneously, When I dismiss one notification, Then only that specific notification is removed while others remain visible",
+      "Given a notification popup is displayed, When I click outside the notification popup area, Then the notification may optionally be dismissed (nice-to-have, not mandatory for MVP)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T035",
+    "phase": "User Story 2 - Dismiss Notification Popup (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Add dismiss functionality to NotificationList component in app/components/notifications/NotificationList.tsx: each notification can be dismissed independently",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/NotificationList.tsx"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed on screen, When I click a dismiss or close button on the notification, Then the popup disappears and is removed from the interface",
+      "Given multiple notification popups are displayed simultaneously, When I dismiss one notification, Then only that specific notification is removed while others remain visible",
+      "Given a notification popup is displayed, When I click outside the notification popup area, Then the notification may optionally be dismissed (nice-to-have, not mandatory for MVP)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T036",
+    "phase": "User Story 2 - Dismiss Notification Popup (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Test multiple notification dismissal: verify dismissing one notification doesn't affect others (FR-007, FR-010 requirement)",
+    "description": "**Checkpoint**: At this point, User Stories 1 AND 2 should both work independently. Users can receive and dismiss notifications.",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given a notification popup is displayed on screen, When I click a dismiss or close button on the notification, Then the popup disappears and is removed from the interface",
+      "Given multiple notification popups are displayed simultaneously, When I dismiss one notification, Then only that specific notification is removed while others remain visible",
+      "Given a notification popup is displayed, When I click outside the notification popup area, Then the notification may optionally be dismissed (nice-to-have, not mandatory for MVP)"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T037",
+    "phase": "User Story 3 - View Event Details from Notification (Priority: P3)",
+    "parallel": true,
+    "user_story": "US3",
+    "title": "Create EventDetailsModal component in app/components/notifications/EventDetailsModal.tsx using ShadCN UI Dialog/Modal",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/EventDetailsModal.tsx"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed for an event, When I click on the notification popup (not the dismiss button), Then I see expanded event details including event title, scheduled time, and any available description",
+      "Given I have viewed event details from a notification, When I close the details view, Then I return to the main application view",
+      "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T038",
+    "phase": "User Story 3 - View Event Details from Notification (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Implement click handler in app/components/notifications/NotificationPopup.tsx: detect click on notification body (not dismiss button), trigger showEventDetails action",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/NotificationPopup.tsx"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed for an event, When I click on the notification popup (not the dismiss button), Then I see expanded event details including event title, scheduled time, and any available description",
+      "Given I have viewed event details from a notification, When I close the details view, Then I return to the main application view",
+      "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T039",
+    "phase": "User Story 3 - View Event Details from Notification (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Update notification reducer in app/lib/hooks/use-notifications.ts: handle SHOW_EVENT_DETAILS action, set isDetailsShown flag, dismiss notification popup",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/hooks/use-notifications.ts"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed for an event, When I click on the notification popup (not the dismiss button), Then I see expanded event details including event title, scheduled time, and any available description",
+      "Given I have viewed event details from a notification, When I close the details view, Then I return to the main application view",
+      "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T040",
+    "phase": "User Story 3 - View Event Details from Notification (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Implement event data retrieval in app/lib/services/notification-service.ts: showEventDetails(notificationId) method that fetches event from localStorage by eventId",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/services/notification-service.ts"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed for an event, When I click on the notification popup (not the dismiss button), Then I see expanded event details including event title, scheduled time, and any available description",
+      "Given I have viewed event details from a notification, When I close the details view, Then I return to the main application view",
+      "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T041",
+    "phase": "User Story 3 - View Event Details from Notification (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Display event details in app/components/notifications/EventDetailsModal.tsx: show event title, scheduled time (formatted), description if available",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/EventDetailsModal.tsx"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed for an event, When I click on the notification popup (not the dismiss button), Then I see expanded event details including event title, scheduled time, and any available description",
+      "Given I have viewed event details from a notification, When I close the details view, Then I return to the main application view",
+      "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T042",
+    "phase": "User Story 3 - View Event Details from Notification (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Add close button to EventDetailsModal in app/components/notifications/EventDetailsModal.tsx: close modal and return to main view",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/EventDetailsModal.tsx"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed for an event, When I click on the notification popup (not the dismiss button), Then I see expanded event details including event title, scheduled time, and any available description",
+      "Given I have viewed event details from a notification, When I close the details view, Then I return to the main application view",
+      "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T043",
+    "phase": "User Story 3 - View Event Details from Notification (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Implement modal state management in app/lib/hooks/use-notifications.ts: track which notification has details shown, handle modal open/close",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/hooks/use-notifications.ts"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed for an event, When I click on the notification popup (not the dismiss button), Then I see expanded event details including event title, scheduled time, and any available description",
+      "Given I have viewed event details from a notification, When I close the details view, Then I return to the main application view",
+      "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T044",
+    "phase": "User Story 3 - View Event Details from Notification (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Add backdrop click handler in app/components/notifications/EventDetailsModal.tsx: close modal when clicking outside (optional enhancement)",
+    "description": "**Checkpoint**: At this point, all user stories should be independently functional. Users can receive notifications, dismiss them, and view event details.",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/EventDetailsModal.tsx"
+    ],
+    "definition_of_done": [
+      "Given a notification popup is displayed for an event, When I click on the notification popup (not the dismiss button), Then I see expanded event details including event title, scheduled time, and any available description",
+      "Given I have viewed event details from a notification, When I close the details view, Then I return to the main application view",
+      "Given a notification popup is displayed, When I click to view details, Then the notification popup is dismissed and replaced with the event details view"
+    ],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T045",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Add error handling for localStorage access failures (private browsing mode) in app/lib/utils/storage.ts",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/utils/storage.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T046",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Add error handling for audio playback failures in app/lib/services/notification-service.ts: gracefully continue without sound if audio fails",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/services/notification-service.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T047",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Implement notification cleanup in app/lib/hooks/use-notifications.ts: clearOldNotifications() removes notifications older than 5 minutes",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/hooks/use-notifications.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T048",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Add loading states for event data retrieval in app/components/notifications/EventDetailsModal.tsx",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/EventDetailsModal.tsx"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T049",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Optimize notification rendering performance: ensure app remains responsive during notification checks (SC-005 requirement)",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T050",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Add accessibility features: ARIA labels, keyboard navigation (Enter to show details, Escape to dismiss) in app/components/notifications/NotificationPopup.tsx",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/NotificationPopup.tsx"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T051",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Ensure WCAG AA color contrast standards in app/components/notifications/NotificationPopup.tsx and EventDetailsModal.tsx",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/notifications/NotificationPopup.tsx"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T052",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Test mobile responsiveness on iPhone 15 dimensions (390x844px): verify notifications display correctly, touch targets are adequate (44x44px minimum)",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T053",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Test PWA installation: verify app can be installed on iPhone 15 Safari, service worker doesn't interfere with notification polling",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T054",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Add console logging for debugging: log notification triggers, dismissals, event monitoring cycles (development mode only)",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T055",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": false,
+    "user_story": null,
+    "title": "Run quickstart.md validation: test all manual test scenarios from quickstart guide",
+    "description": "- **Setup (Phase 1)**: No dependencies - can start immediately - **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories - **User Stories (Phase 3+)**: All depend on Foundational phase completion - User stories can then proceed in parallel (if staffed) - Or sequentially in priority order (P1 \u2192 P2 \u2192 P3) - **Polish (Final Phase)**: Depends on all desired user stories being complete - **User Story 1 (P1)**: Can start after Foundational (Phase 2) - No dependencies on other stories. Core notification functionality. - **User Story 2 (P2)**: Can start after Foundational (Phase 2) - Depends on User Story 1 components (NotificationPopup) but adds independent dismiss functionality - **User Story 3 (P3)**: Can start after Foundational (Phase 2) - Depends on User Story 1 components (NotificationPopup) but adds independent event details functionality - Services before components (EventMonitor/NotificationService before UI components) - Core functionality before enhancements (notification display before sound, basic popup before details modal) - Story complete before moving to next priority - All Setup tasks marked [P] can run in parallel (T002-T007) - All Foundational tasks marked [P] can run in parallel (T008-T011) - Once Foundational phase completes: - User Story 1: T016, T022, T025 can run in parallel - User Story 2: Can start after US1 NotificationPopup exists - User Story 3: T037 can start in parallel with US2 - Polish phase tasks marked [P] can all run in parallel ```bash Task: \"Create CalendarEvent type definition in app/types/event.ts\" Task: \"Create NotificationState type definition in app/types/event.ts\" Task: \"Create storage utility functions in app/lib/utils/storage.ts\" Task: \"Create date utility functions in app/lib/utils/date-utils.ts\" Task: \"Create NotificationPopup component in app/components/notifications/NotificationPopup.tsx\" Task: \"Add notification sound file to public/sounds/notification.mp3\" ``` 1. Complete Phase 1: Setup (Next.js, dependencies, ShadCN UI, Tailwind, PWA) 2. Complete Phase 2: Foundational (types, utils, context) - CRITICAL - blocks all stories 3. Complete Phase 3: User Story 1 (event monitoring, notifications, sound) 4. **STOP and VALIDATE**: Test User Story 1 independently - create test event, verify notification appears 5. Deploy/demo if ready 1. Complete Setup + Foundational \u2192 Foundation ready 2. Add User Story 1 \u2192 Test independently \u2192 Deploy/Demo (MVP - notifications work!) 3. Add User Story 2 \u2192 Test independently \u2192 Deploy/Demo (users can dismiss) 4. Add User Story 3 \u2192 Test independently \u2192 Deploy/Demo (users can view details) 5. Each story adds value without breaking previous stories With multiple developers: 1. Team completes Setup + Foundational together 2. Once Foundational is done: - Developer A: User Story 1 (EventMonitor, NotificationService, NotificationPopup) - Developer B: User Story 2 (dismiss functionality) - can start after US1 NotificationPopup - Developer C: User Story 3 (EventDetailsModal) - can start after US1 NotificationPopup 3. Stories complete and integrate independently - [P] tasks = different files, no dependencies - [Story] label maps task to specific user story for traceability - Each user story should be independently completable and testable - Commit after each task or logical group - Stop at any checkpoint to validate story independently - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence - localStorage key for events: `calendar_events` (JSON array) - Notification sound: short, pleasant sound file in `public/sounds/notification.mp3` - Mobile-first design: optimize for iPhone 15 (390x844px) as reference - PWA: Ensure service worker doesn't interfere with 60-second polling interval",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-event-notification"
+  },
+  {
+    "id": "T001",
+    "phase": "Setup (Shared Infrastructure)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Install ShadCN UI Badge and Select components: `npx shadcn-ui@latest add badge` and `npx shadcn-ui@latest add select`",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T002",
+    "phase": "Setup (Shared Infrastructure)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Ensure Next.js 14+ project structure exists with App Router in repository root",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T003",
+    "phase": "Setup (Shared Infrastructure)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Verify Tailwind CSS 3.x is configured with mobile-first responsive design (iPhone 15: 390x844px breakpoints)",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T004",
+    "phase": "Setup (Shared Infrastructure)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Verify TypeScript 5.x configuration (tsconfig.json) with strict mode",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T005",
+    "phase": "Setup (Shared Infrastructure)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Create project directory structure: app/components/board/, app/lib/services/, app/lib/hooks/, app/lib/utils/, app/types/",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T006",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Create User type definition in app/types/user.ts with id, name attributes",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/types/user.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T007",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Create Card type definition in app/types/user.ts with id, assignedUserId, title, columnId attributes",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/types/user.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T008",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Create UserWorkload type definition in app/types/user.ts with userId, cardCount, status, hasIndicator attributes",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/types/user.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T009",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Create FilterState type definition in app/types/user.ts with selectedUserId, filteredCards, isFilterActive attributes",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/types/user.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T010",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": true,
+    "user_story": null,
+    "title": "Create storage utility functions in app/lib/utils/storage.ts: saveToStorage(key, value), loadFromStorage(key), handle localStorage JSON parsing with error handling",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/utils/storage.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T011",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": false,
+    "user_story": null,
+    "title": "Create FilterService in app/lib/services/filter-service.ts with getFilteredCards(), saveFilterToStorage(), loadFilterFromStorage(), clearFilter() methods",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/services/filter-service.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T012",
+    "phase": "Foundational (Blocking Prerequisites)",
+    "parallel": false,
+    "user_story": null,
+    "title": "Create WorkloadCalculator in app/lib/services/workload-calculator.ts with calculateUserWorkloads(), getUserWorkload(), getUserStatus() methods",
+    "description": "**Checkpoint**: Foundation ready - user story implementation can now begin in parallel",
+    "status": "todo",
+    "files": [
+      "app/lib/services/workload-calculator.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T013",
+    "phase": "User Story 1 - Filter Board by User (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": true,
+    "user_story": "US1",
+    "title": "Create useUserFilter hook in app/lib/hooks/use-user-filter.ts with useState, useEffect, useMemo for filter state management",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/hooks/use-user-filter.ts"
+    ],
+    "definition_of_done": [
+      "Given I am viewing the Kanban board with multiple cards assigned to different users, When I select a specific user from the filter control, Then only cards assigned to that user are displayed and all other cards are hidden",
+      "Given I have filtered the board to show cards for a specific user, When I clear or reset the filter, Then all cards are displayed again regardless of assignment",
+      "Given I have filtered the board by user, When a new card is assigned to the filtered user, Then the new card appears in the filtered view immediately"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T014",
+    "phase": "User Story 1 - Filter Board by User (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Implement filter state persistence in app/lib/hooks/use-user-filter.ts: load saved filter from localStorage on mount, save filter to localStorage on change",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/hooks/use-user-filter.ts"
+    ],
+    "definition_of_done": [
+      "Given I am viewing the Kanban board with multiple cards assigned to different users, When I select a specific user from the filter control, Then only cards assigned to that user are displayed and all other cards are hidden",
+      "Given I have filtered the board to show cards for a specific user, When I clear or reset the filter, Then all cards are displayed again regardless of assignment",
+      "Given I have filtered the board by user, When a new card is assigned to the filtered user, Then the new card appears in the filtered view immediately"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T015",
+    "phase": "User Story 1 - Filter Board by User (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Implement filtered cards calculation in app/lib/hooks/use-user-filter.ts: use useMemo to filter cards array based on selectedUserId",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/hooks/use-user-filter.ts"
+    ],
+    "definition_of_done": [
+      "Given I am viewing the Kanban board with multiple cards assigned to different users, When I select a specific user from the filter control, Then only cards assigned to that user are displayed and all other cards are hidden",
+      "Given I have filtered the board to show cards for a specific user, When I clear or reset the filter, Then all cards are displayed again regardless of assignment",
+      "Given I have filtered the board by user, When a new card is assigned to the filtered user, Then the new card appears in the filtered view immediately"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T016",
+    "phase": "User Story 1 - Filter Board by User (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": true,
+    "user_story": "US1",
+    "title": "Create UserFilter component in app/components/board/UserFilter.tsx using ShadCN UI Select component",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/UserFilter.tsx"
+    ],
+    "definition_of_done": [
+      "Given I am viewing the Kanban board with multiple cards assigned to different users, When I select a specific user from the filter control, Then only cards assigned to that user are displayed and all other cards are hidden",
+      "Given I have filtered the board to show cards for a specific user, When I clear or reset the filter, Then all cards are displayed again regardless of assignment",
+      "Given I have filtered the board by user, When a new card is assigned to the filtered user, Then the new card appears in the filtered view immediately"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T017",
+    "phase": "User Story 1 - Filter Board by User (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Implement user selection dropdown in app/components/board/UserFilter.tsx: display all users (including users with 0 cards), handle user selection, show \"All users\" option",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/UserFilter.tsx"
+    ],
+    "definition_of_done": [
+      "Given I am viewing the Kanban board with multiple cards assigned to different users, When I select a specific user from the filter control, Then only cards assigned to that user are displayed and all other cards are hidden",
+      "Given I have filtered the board to show cards for a specific user, When I clear or reset the filter, Then all cards are displayed again regardless of assignment",
+      "Given I have filtered the board by user, When a new card is assigned to the filtered user, Then the new card appears in the filtered view immediately"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T018",
+    "phase": "User Story 1 - Filter Board by User (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Implement clear filter button in app/components/board/UserFilter.tsx: reset filter to show all cards",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/UserFilter.tsx"
+    ],
+    "definition_of_done": [
+      "Given I am viewing the Kanban board with multiple cards assigned to different users, When I select a specific user from the filter control, Then only cards assigned to that user are displayed and all other cards are hidden",
+      "Given I have filtered the board to show cards for a specific user, When I clear or reset the filter, Then all cards are displayed again regardless of assignment",
+      "Given I have filtered the board by user, When a new card is assigned to the filtered user, Then the new card appears in the filtered view immediately"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T019",
+    "phase": "User Story 1 - Filter Board by User (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Integrate UserFilter component into board layout in app/(routes)/board/page.tsx or app/components/board/Board.tsx",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/Board.tsx",
+      "board/page.tsx"
+    ],
+    "definition_of_done": [
+      "Given I am viewing the Kanban board with multiple cards assigned to different users, When I select a specific user from the filter control, Then only cards assigned to that user are displayed and all other cards are hidden",
+      "Given I have filtered the board to show cards for a specific user, When I clear or reset the filter, Then all cards are displayed again regardless of assignment",
+      "Given I have filtered the board by user, When a new card is assigned to the filtered user, Then the new card appears in the filtered view immediately"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T020",
+    "phase": "User Story 1 - Filter Board by User (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Implement card filtering logic in board component: use filteredCards from useUserFilter hook, hide cards not matching filter",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I am viewing the Kanban board with multiple cards assigned to different users, When I select a specific user from the filter control, Then only cards assigned to that user are displayed and all other cards are hidden",
+      "Given I have filtered the board to show cards for a specific user, When I clear or reset the filter, Then all cards are displayed again regardless of assignment",
+      "Given I have filtered the board by user, When a new card is assigned to the filtered user, Then the new card appears in the filtered view immediately"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T021",
+    "phase": "User Story 1 - Filter Board by User (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Test filter persistence: select user, refresh page, verify filter is restored from localStorage",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I am viewing the Kanban board with multiple cards assigned to different users, When I select a specific user from the filter control, Then only cards assigned to that user are displayed and all other cards are hidden",
+      "Given I have filtered the board to show cards for a specific user, When I clear or reset the filter, Then all cards are displayed again regardless of assignment",
+      "Given I have filtered the board by user, When a new card is assigned to the filtered user, Then the new card appears in the filtered view immediately"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T022",
+    "phase": "User Story 1 - Filter Board by User (Priority: P1) \ud83c\udfaf MVP",
+    "parallel": false,
+    "user_story": "US1",
+    "title": "Test dynamic updates: with filter active, assign new card to filtered user, verify card appears immediately",
+    "description": "**Checkpoint**: At this point, User Story 1 should be fully functional and testable independently. Users can filter board by user and see only that user's cards.",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I am viewing the Kanban board with multiple cards assigned to different users, When I select a specific user from the filter control, Then only cards assigned to that user are displayed and all other cards are hidden",
+      "Given I have filtered the board to show cards for a specific user, When I clear or reset the filter, Then all cards are displayed again regardless of assignment",
+      "Given I have filtered the board by user, When a new card is assigned to the filtered user, Then the new card appears in the filtered view immediately"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T023",
+    "phase": "User Story 2 - Visual Workload Indicator for Overloaded Users (Priority: P2)",
+    "parallel": true,
+    "user_story": "US2",
+    "title": "Create WorkloadIndicator component in app/components/board/WorkloadIndicator.tsx using ShadCN UI Badge component",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/WorkloadIndicator.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with exactly 3 cards, When I view the filtered board, Then no workload indicator is displayed",
+      "Given I have filtered the board to show cards for a user with 4 or more cards, When I view the filtered board, Then a visual indicator (badge showing card count combined with color highlight) appears associated with that user showing they have more than 3 cards",
+      "Given a user has 4 cards and a workload indicator is displayed, When one of their cards is completed or reassigned (reducing to 3 or fewer), Then the workload indicator disappears"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T024",
+    "phase": "User Story 2 - Visual Workload Indicator for Overloaded Users (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Implement badge display in app/components/board/WorkloadIndicator.tsx: show card count (e.g., \"4 cards\"), apply color highlight (Tailwind: bg-orange-100 border-orange-300 text-orange-800)",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/WorkloadIndicator.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with exactly 3 cards, When I view the filtered board, Then no workload indicator is displayed",
+      "Given I have filtered the board to show cards for a user with 4 or more cards, When I view the filtered board, Then a visual indicator (badge showing card count combined with color highlight) appears associated with that user showing they have more than 3 cards",
+      "Given a user has 4 cards and a workload indicator is displayed, When one of their cards is completed or reassigned (reducing to 3 or fewer), Then the workload indicator disappears"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T025",
+    "phase": "User Story 2 - Visual Workload Indicator for Overloaded Users (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Implement conditional rendering in app/components/board/WorkloadIndicator.tsx: only display when cardCount > 3",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/WorkloadIndicator.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with exactly 3 cards, When I view the filtered board, Then no workload indicator is displayed",
+      "Given I have filtered the board to show cards for a user with 4 or more cards, When I view the filtered board, Then a visual indicator (badge showing card count combined with color highlight) appears associated with that user showing they have more than 3 cards",
+      "Given a user has 4 cards and a workload indicator is displayed, When one of their cards is completed or reassigned (reducing to 3 or fewer), Then the workload indicator disappears"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T026",
+    "phase": "User Story 2 - Visual Workload Indicator for Overloaded Users (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Integrate WorkloadIndicator into UserFilter component in app/components/board/UserFilter.tsx: display next to user name when user has >3 cards",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/UserFilter.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with exactly 3 cards, When I view the filtered board, Then no workload indicator is displayed",
+      "Given I have filtered the board to show cards for a user with 4 or more cards, When I view the filtered board, Then a visual indicator (badge showing card count combined with color highlight) appears associated with that user showing they have more than 3 cards",
+      "Given a user has 4 cards and a workload indicator is displayed, When one of their cards is completed or reassigned (reducing to 3 or fewer), Then the workload indicator disappears"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T027",
+    "phase": "User Story 2 - Visual Workload Indicator for Overloaded Users (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Connect WorkloadIndicator to workload calculation: use calculateUserWorkloads() to get cardCount for selected user",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with exactly 3 cards, When I view the filtered board, Then no workload indicator is displayed",
+      "Given I have filtered the board to show cards for a user with 4 or more cards, When I view the filtered board, Then a visual indicator (badge showing card count combined with color highlight) appears associated with that user showing they have more than 3 cards",
+      "Given a user has 4 cards and a workload indicator is displayed, When one of their cards is completed or reassigned (reducing to 3 or fewer), Then the workload indicator disappears"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T028",
+    "phase": "User Story 2 - Visual Workload Indicator for Overloaded Users (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Implement real-time updates in app/components/board/WorkloadIndicator.tsx: update immediately when card assignments change",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/WorkloadIndicator.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with exactly 3 cards, When I view the filtered board, Then no workload indicator is displayed",
+      "Given I have filtered the board to show cards for a user with 4 or more cards, When I view the filtered board, Then a visual indicator (badge showing card count combined with color highlight) appears associated with that user showing they have more than 3 cards",
+      "Given a user has 4 cards and a workload indicator is displayed, When one of their cards is completed or reassigned (reducing to 3 or fewer), Then the workload indicator disappears"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T029",
+    "phase": "User Story 2 - Visual Workload Indicator for Overloaded Users (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Test indicator appearance: assign 4th card to user, verify indicator appears within 1 second (SC-002)",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with exactly 3 cards, When I view the filtered board, Then no workload indicator is displayed",
+      "Given I have filtered the board to show cards for a user with 4 or more cards, When I view the filtered board, Then a visual indicator (badge showing card count combined with color highlight) appears associated with that user showing they have more than 3 cards",
+      "Given a user has 4 cards and a workload indicator is displayed, When one of their cards is completed or reassigned (reducing to 3 or fewer), Then the workload indicator disappears"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T030",
+    "phase": "User Story 2 - Visual Workload Indicator for Overloaded Users (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Test indicator removal: reassign card to reduce count to 3, verify indicator disappears immediately",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with exactly 3 cards, When I view the filtered board, Then no workload indicator is displayed",
+      "Given I have filtered the board to show cards for a user with 4 or more cards, When I view the filtered board, Then a visual indicator (badge showing card count combined with color highlight) appears associated with that user showing they have more than 3 cards",
+      "Given a user has 4 cards and a workload indicator is displayed, When one of their cards is completed or reassigned (reducing to 3 or fewer), Then the workload indicator disappears"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T031",
+    "phase": "User Story 2 - Visual Workload Indicator for Overloaded Users (Priority: P2)",
+    "parallel": false,
+    "user_story": "US2",
+    "title": "Test non-blocking behavior: with indicator displayed, interact with board, verify indicator doesn't block interactions (FR-007)",
+    "description": "**Checkpoint**: At this point, User Stories 1 AND 2 should both work independently. Users can filter by user and see workload indicators for overloaded users.",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with exactly 3 cards, When I view the filtered board, Then no workload indicator is displayed",
+      "Given I have filtered the board to show cards for a user with 4 or more cards, When I view the filtered board, Then a visual indicator (badge showing card count combined with color highlight) appears associated with that user showing they have more than 3 cards",
+      "Given a user has 4 cards and a workload indicator is displayed, When one of their cards is completed or reassigned (reducing to 3 or fewer), Then the workload indicator disappears"
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T032",
+    "phase": "User Story 3 - User Status Change Based on Workload (Priority: P3)",
+    "parallel": true,
+    "user_story": "US3",
+    "title": "Create UserStatusBadge component in app/components/board/UserStatusBadge.tsx using ShadCN UI Badge component",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/UserStatusBadge.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with 3 or fewer cards, When I view the filtered board, Then the user's status is displayed as \"OK\" (or equivalent normal status)",
+      "Given a user has 3 cards and status \"OK\", When a new card is assigned to them (increasing to 4), Then their status changes to \"Busy\" (or equivalent overloaded status) and is visible in the filtered board",
+      "Given a user has 4 cards and status \"Busy\", When one of their cards is completed or reassigned (reducing to 3 or fewer), Then their status changes back to \"OK\""
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T033",
+    "phase": "User Story 3 - User Status Change Based on Workload (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Implement status display in app/components/board/UserStatusBadge.tsx: show \"OK\" (green variant) or \"Busy\" (orange/red variant) based on status prop",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/UserStatusBadge.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with 3 or fewer cards, When I view the filtered board, Then the user's status is displayed as \"OK\" (or equivalent normal status)",
+      "Given a user has 3 cards and status \"OK\", When a new card is assigned to them (increasing to 4), Then their status changes to \"Busy\" (or equivalent overloaded status) and is visible in the filtered board",
+      "Given a user has 4 cards and status \"Busy\", When one of their cards is completed or reassigned (reducing to 3 or fewer), Then their status changes back to \"OK\""
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T034",
+    "phase": "User Story 3 - User Status Change Based on Workload (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Implement status calculation logic in app/components/board/UserStatusBadge.tsx: use getUserStatus() from WorkloadCalculator (\u22643 = OK, >3 = Busy)",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/UserStatusBadge.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with 3 or fewer cards, When I view the filtered board, Then the user's status is displayed as \"OK\" (or equivalent normal status)",
+      "Given a user has 3 cards and status \"OK\", When a new card is assigned to them (increasing to 4), Then their status changes to \"Busy\" (or equivalent overloaded status) and is visible in the filtered board",
+      "Given a user has 4 cards and status \"Busy\", When one of their cards is completed or reassigned (reducing to 3 or fewer), Then their status changes back to \"OK\""
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T035",
+    "phase": "User Story 3 - User Status Change Based on Workload (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Integrate UserStatusBadge into UserFilter component in app/components/board/UserFilter.tsx: display next to selected user name in filter control/board header",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/UserFilter.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with 3 or fewer cards, When I view the filtered board, Then the user's status is displayed as \"OK\" (or equivalent normal status)",
+      "Given a user has 3 cards and status \"OK\", When a new card is assigned to them (increasing to 4), Then their status changes to \"Busy\" (or equivalent overloaded status) and is visible in the filtered board",
+      "Given a user has 4 cards and status \"Busy\", When one of their cards is completed or reassigned (reducing to 3 or fewer), Then their status changes back to \"OK\""
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T036",
+    "phase": "User Story 3 - User Status Change Based on Workload (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Connect UserStatusBadge to workload calculation: use calculateUserWorkloads() to get status for selected user",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with 3 or fewer cards, When I view the filtered board, Then the user's status is displayed as \"OK\" (or equivalent normal status)",
+      "Given a user has 3 cards and status \"OK\", When a new card is assigned to them (increasing to 4), Then their status changes to \"Busy\" (or equivalent overloaded status) and is visible in the filtered board",
+      "Given a user has 4 cards and status \"Busy\", When one of their cards is completed or reassigned (reducing to 3 or fewer), Then their status changes back to \"OK\""
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T037",
+    "phase": "User Story 3 - User Status Change Based on Workload (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Implement real-time status updates in app/components/board/UserStatusBadge.tsx: update immediately when card count crosses threshold (3 cards)",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/UserStatusBadge.tsx"
+    ],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with 3 or fewer cards, When I view the filtered board, Then the user's status is displayed as \"OK\" (or equivalent normal status)",
+      "Given a user has 3 cards and status \"OK\", When a new card is assigned to them (increasing to 4), Then their status changes to \"Busy\" (or equivalent overloaded status) and is visible in the filtered board",
+      "Given a user has 4 cards and status \"Busy\", When one of their cards is completed or reassigned (reducing to 3 or fewer), Then their status changes back to \"OK\""
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T038",
+    "phase": "User Story 3 - User Status Change Based on Workload (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Test status display: filter by user with 3 cards, verify status shows \"OK\"",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with 3 or fewer cards, When I view the filtered board, Then the user's status is displayed as \"OK\" (or equivalent normal status)",
+      "Given a user has 3 cards and status \"OK\", When a new card is assigned to them (increasing to 4), Then their status changes to \"Busy\" (or equivalent overloaded status) and is visible in the filtered board",
+      "Given a user has 4 cards and status \"Busy\", When one of their cards is completed or reassigned (reducing to 3 or fewer), Then their status changes back to \"OK\""
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T039",
+    "phase": "User Story 3 - User Status Change Based on Workload (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Test status change to Busy: assign 4th card to user, verify status changes to \"Busy\" within 1 second (SC-003)",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with 3 or fewer cards, When I view the filtered board, Then the user's status is displayed as \"OK\" (or equivalent normal status)",
+      "Given a user has 3 cards and status \"OK\", When a new card is assigned to them (increasing to 4), Then their status changes to \"Busy\" (or equivalent overloaded status) and is visible in the filtered board",
+      "Given a user has 4 cards and status \"Busy\", When one of their cards is completed or reassigned (reducing to 3 or fewer), Then their status changes back to \"OK\""
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T040",
+    "phase": "User Story 3 - User Status Change Based on Workload (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Test status change to OK: reassign card to reduce count to 3, verify status changes back to \"OK\" immediately",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with 3 or fewer cards, When I view the filtered board, Then the user's status is displayed as \"OK\" (or equivalent normal status)",
+      "Given a user has 3 cards and status \"OK\", When a new card is assigned to them (increasing to 4), Then their status changes to \"Busy\" (or equivalent overloaded status) and is visible in the filtered board",
+      "Given a user has 4 cards and status \"Busy\", When one of their cards is completed or reassigned (reducing to 3 or fewer), Then their status changes back to \"OK\""
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T041",
+    "phase": "User Story 3 - User Status Change Based on Workload (Priority: P3)",
+    "parallel": false,
+    "user_story": "US3",
+    "title": "Test boundary condition: user with exactly 3 cards shows \"OK\" status",
+    "description": "**Checkpoint**: At this point, all user stories should be independently functional. Users can filter by user, see workload indicators, and view user status.",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [
+      "Given I have filtered the board to show cards for a user with 3 or fewer cards, When I view the filtered board, Then the user's status is displayed as \"OK\" (or equivalent normal status)",
+      "Given a user has 3 cards and status \"OK\", When a new card is assigned to them (increasing to 4), Then their status changes to \"Busy\" (or equivalent overloaded status) and is visible in the filtered board",
+      "Given a user has 4 cards and status \"Busy\", When one of their cards is completed or reassigned (reducing to 3 or fewer), Then their status changes back to \"OK\""
+    ],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T042",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Add mobile-responsive design to UserFilter component in app/components/board/UserFilter.tsx: ensure touch-friendly interactions, responsive layout for iPhone 15 (390x844px)",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/UserFilter.tsx"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T043",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Add mobile-responsive design to WorkloadIndicator component in app/components/board/WorkloadIndicator.tsx: ensure badge is readable and touch-friendly on mobile",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/WorkloadIndicator.tsx"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T044",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Add mobile-responsive design to UserStatusBadge component in app/components/board/UserStatusBadge.tsx: ensure status badge is visible and accessible on mobile",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/components/board/UserStatusBadge.tsx"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T045",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Configure PWA support: verify next-pwa is configured in next.config.js, ensure service worker doesn't interfere with localStorage operations",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T046",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Test PWA installation: verify app can be installed on iPhone 15 Safari, test offline functionality with filter state persistence",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T047",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Add error handling for localStorage access failures (private browsing mode) in app/lib/utils/storage.ts and app/lib/services/filter-service.ts",
+    "description": "",
+    "status": "todo",
+    "files": [
+      "app/lib/utils/storage.ts",
+      "app/lib/services/filter-service.ts"
+    ],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T048",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Optimize performance: ensure useMemo prevents unnecessary recalculations, verify filtering completes within 2 seconds (SC-001)",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T049",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Add accessibility features: ARIA labels for filter control, keyboard navigation support, WCAG AA color contrast for badges and status",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T050",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Test edge cases: user with 0 cards (shows in filter, status OK), rapid status changes, filter applied during card movement",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T051",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Test on mobile devices: verify feature works correctly on iPhone 15+ with touch interactions and responsive layout (SC-009)",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T052",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": true,
+    "user_story": null,
+    "title": "Test PWA functionality: verify offline support works, filter state persists, app can be installed (SC-010)",
+    "description": "",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  },
+  {
+    "id": "T053",
+    "phase": "Polish & Cross-Cutting Concerns",
+    "parallel": false,
+    "user_story": null,
+    "title": "Run quickstart.md validation: test all manual test scenarios from quickstart guide",
+    "description": "- **Setup (Phase 1)**: No dependencies - can start immediately - **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories - **User Stories (Phase 3+)**: All depend on Foundational phase completion - User stories can then proceed in parallel (if staffed) - Or sequentially in priority order (P1 \u2192 P2 \u2192 P3) - **Polish (Final Phase)**: Depends on all desired user stories being complete - **User Story 1 (P1)**: Can start after Foundational (Phase 2) - No dependencies on other stories. Core filtering functionality. - **User Story 2 (P2)**: Can start after Foundational (Phase 2) - Depends on User Story 1 components (UserFilter) but adds independent workload indicator functionality - **User Story 3 (P3)**: Can start after Foundational (Phase 2) - Depends on User Story 1 components (UserFilter) but adds independent status display functionality - Types before services (types defined in Phase 2) - Services before hooks (FilterService, WorkloadCalculator before useUserFilter) - Hooks before components (useUserFilter before UserFilter component) - Components before integration (individual components before board integration) - Story complete before moving to next priority - All Setup tasks marked [P] can run in parallel (T001-T005) - All Foundational tasks marked [P] can run in parallel (T006-T010) - Once Foundational phase completes: - User Story 1: T013, T016 can run in parallel - User Story 2: T023 can start after US1 UserFilter exists - User Story 3: T032 can start after US1 UserFilter exists - Polish phase tasks marked [P] can all run in parallel ```bash Task: \"Create User type definition in app/types/user.ts\" Task: \"Create Card type definition in app/types/user.ts\" Task: \"Create UserWorkload type definition in app/types/user.ts\" Task: \"Create FilterState type definition in app/types/user.ts\" Task: \"Create useUserFilter hook in app/lib/hooks/use-user-filter.ts\" Task: \"Create UserFilter component in app/components/board/UserFilter.tsx\" ``` 1. Complete Phase 1: Setup (ShadCN UI components, directory structure) 2. Complete Phase 2: Foundational (types, services) - CRITICAL - blocks all stories 3. Complete Phase 3: User Story 1 (filtering functionality) 4. **STOP and VALIDATE**: Test User Story 1 independently - select user, verify filtering works 5. Deploy/demo if ready 1. Complete Setup + Foundational \u2192 Foundation ready 2. Add User Story 1 \u2192 Test independently \u2192 Deploy/Demo (MVP - filtering works!) 3. Add User Story 2 \u2192 Test independently \u2192 Deploy/Demo (users can see workload indicators) 4. Add User Story 3 \u2192 Test independently \u2192 Deploy/Demo (users can see status) 5. Add Polish phase \u2192 Mobile/PWA support \u2192 Final validation 6. Each story adds value without breaking previous stories With multiple developers: 1. Team completes Setup + Foundational together 2. Once Foundational is done: - Developer A: User Story 1 (FilterService, useUserFilter, UserFilter component) - Developer B: User Story 2 (WorkloadIndicator component) - can start after US1 UserFilter - Developer C: User Story 3 (UserStatusBadge component) - can start after US1 UserFilter 3. Stories complete and integrate independently 4. Polish phase: Mobile/PWA tasks can be done in parallel - [P] tasks = different files, no dependencies - [Story] label maps task to specific user story for traceability - Each user story should be independently completable and testable - Commit after each task or logical group - Stop at any checkpoint to validate story independently - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence - localStorage key for filter: `user_filter` (string value of userId or empty string) - Mobile-first design: optimize for iPhone 15 (390x844px) as reference - PWA: Ensure service worker doesn't interfere with localStorage filter persistence - Performance: Use useMemo to prevent unnecessary recalculations (filtering, workload calculation)",
+    "status": "todo",
+    "files": [],
+    "definition_of_done": [],
+    "last_error": null,
+    "feature": "001-user-filtering"
+  }
+]
