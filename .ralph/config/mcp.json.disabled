@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "filesystem_validator": {
+      "command": "python",
+      "args": ["-m", "mcp_validation.server"],
+      "env": {}
+    }
+  }
+}
