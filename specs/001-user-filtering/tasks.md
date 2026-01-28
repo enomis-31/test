@@ -27,11 +27,11 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 [P] Install ShadCN UI Badge and Select components: `npx shadcn-ui@latest add badge` and `npx shadcn-ui@latest add select`
-- [ ] T002 [P] Ensure Next.js 14+ project structure exists with App Router in repository root
-- [ ] T003 [P] Verify Tailwind CSS 3.x is configured with mobile-first responsive design (iPhone 15: 390x844px breakpoints)
-- [ ] T004 [P] Verify TypeScript 5.x configuration (tsconfig.json) with strict mode
-- [ ] T005 [P] Create project directory structure: app/components/board/, app/lib/services/, app/lib/hooks/, app/lib/utils/, app/types/
+- [X] T001 [P] Install ShadCN UI Badge and Select components: `npx shadcn-ui@latest add badge` and `npx shadcn-ui@latest add select`
+- [X] T002 [P] Ensure Next.js 14+ project structure exists with App Router in repository root
+- [X] T003 [P] Verify Tailwind CSS 3.x is configured with mobile-first responsive design (iPhone 15: 390x844px breakpoints)
+- [X] T004 [P] Verify TypeScript 5.x configuration (tsconfig.json) with strict mode
+- [X] T005 [P] Create project directory structure: app/components/board/, app/lib/services/, app/lib/hooks/, app/lib/utils/, app/types/
 
 ---
 
@@ -41,13 +41,13 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T006 [P] Create User type definition in app/types/user.ts with id, name attributes
-- [ ] T007 [P] Create Card type definition in app/types/user.ts with id, assignedUserId, title, columnId attributes
-- [ ] T008 [P] Create UserWorkload type definition in app/types/user.ts with userId, cardCount, status, hasIndicator attributes
-- [ ] T009 [P] Create FilterState type definition in app/types/user.ts with selectedUserId, filteredCards, isFilterActive attributes
-- [ ] T010 [P] Create storage utility functions in app/lib/utils/storage.ts: saveToStorage(key, value), loadFromStorage(key), handle localStorage JSON parsing with error handling
-- [ ] T011 Create FilterService in app/lib/services/filter-service.ts with getFilteredCards(), saveFilterToStorage(), loadFilterFromStorage(), clearFilter() methods
-- [ ] T012 Create WorkloadCalculator in app/lib/services/workload-calculator.ts with calculateUserWorkloads(), getUserWorkload(), getUserStatus() methods
+- [X] T006 [P] Create User type definition in app/types/user.ts with id, name attributes
+- [X] T007 [P] Create Card type definition in app/types/user.ts with id, assignedUserId, title, columnId attributes
+- [X] T008 [P] Create UserWorkload type definition in app/types/user.ts with userId, cardCount, status, hasIndicator attributes
+- [X] T009 [P] Create FilterState type definition in app/types/user.ts with selectedUserId, filteredCards, isFilterActive attributes
+- [X] T010 [P] Create storage utility functions in app/lib/utils/storage.ts: saveToStorage(key, value), loadFromStorage(key), handle localStorage JSON parsing with error handling
+- [X] T011 Create FilterService in app/lib/services/filter-service.ts with getFilteredCards(), saveFilterToStorage(), loadFilterFromStorage(), clearFilter() methods
+- [X] T012 Create WorkloadCalculator in app/lib/services/workload-calculator.ts with calculateUserWorkloads(), getUserWorkload(), getUserStatus() methods
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -61,14 +61,14 @@
 
 ### Implementation for User Story 1
 
-- [ ] T013 [P] [US1] Create useUserFilter hook in app/lib/hooks/use-user-filter.ts with useState, useEffect, useMemo for filter state management
-- [ ] T014 [US1] Implement filter state persistence in app/lib/hooks/use-user-filter.ts: load saved filter from localStorage on mount, save filter to localStorage on change
-- [ ] T015 [US1] Implement filtered cards calculation in app/lib/hooks/use-user-filter.ts: use useMemo to filter cards array based on selectedUserId
-- [ ] T016 [P] [US1] Create UserFilter component in app/components/board/UserFilter.tsx using ShadCN UI Select component
-- [ ] T017 [US1] Implement user selection dropdown in app/components/board/UserFilter.tsx: display all users (including users with 0 cards), handle user selection, show "All users" option
-- [ ] T018 [US1] Implement clear filter button in app/components/board/UserFilter.tsx: reset filter to show all cards
-- [ ] T019 [US1] Integrate UserFilter component into board layout in app/(routes)/board/page.tsx or app/components/board/Board.tsx
-- [ ] T020 [US1] Implement card filtering logic in board component: use filteredCards from useUserFilter hook, hide cards not matching filter
+- [X] T013 [P] [US1] Create useUserFilter hook in app/lib/hooks/use-user-filter.ts with useState, useEffect, useMemo for filter state management
+- [X] T014 [US1] Implement filter state persistence in app/lib/hooks/use-user-filter.ts: load saved filter from localStorage on mount, save filter to localStorage on change
+- [X] T015 [US1] Implement filtered cards calculation in app/lib/hooks/use-user-filter.ts: use useMemo to filter cards array based on selectedUserId
+- [X] T016 [P] [US1] Create UserFilter component in app/components/board/UserFilter.tsx using ShadCN UI Select component
+- [X] T017 [US1] Implement user selection dropdown in app/components/board/UserFilter.tsx: display all users (including users with 0 cards), handle user selection, show "All users" option
+- [X] T018 [US1] Implement clear filter button in app/components/board/UserFilter.tsx: reset filter to show all cards
+- [X] T019 [US1] Integrate UserFilter component into board layout in app/(routes)/board/page.tsx or app/components/board/Board.tsx
+- [X] T020 [US1] Implement card filtering logic in board component: use filteredCards from useUserFilter hook, hide cards not matching filter
 - [ ] T021 [US1] Test filter persistence: select user, refresh page, verify filter is restored from localStorage
 - [ ] T022 [US1] Test dynamic updates: with filter active, assign new card to filtered user, verify card appears immediately
 
@@ -84,12 +84,12 @@
 
 ### Implementation for User Story 2
 
-- [ ] T023 [P] [US2] Create WorkloadIndicator component in app/components/board/WorkloadIndicator.tsx using ShadCN UI Badge component
-- [ ] T024 [US2] Implement badge display in app/components/board/WorkloadIndicator.tsx: show card count (e.g., "4 cards"), apply color highlight (Tailwind: bg-orange-100 border-orange-300 text-orange-800)
-- [ ] T025 [US2] Implement conditional rendering in app/components/board/WorkloadIndicator.tsx: only display when cardCount > 3
-- [ ] T026 [US2] Integrate WorkloadIndicator into UserFilter component in app/components/board/UserFilter.tsx: display next to user name when user has >3 cards
-- [ ] T027 [US2] Connect WorkloadIndicator to workload calculation: use calculateUserWorkloads() to get cardCount for selected user
-- [ ] T028 [US2] Implement real-time updates in app/components/board/WorkloadIndicator.tsx: update immediately when card assignments change
+- [X] T023 [P] [US2] Create WorkloadIndicator component in app/components/board/WorkloadIndicator.tsx using ShadCN UI Badge component
+- [X] T024 [US2] Implement badge display in app/components/board/WorkloadIndicator.tsx: show card count (e.g., "4 cards"), apply color highlight (Tailwind: bg-orange-100 border-orange-300 text-orange-800)
+- [X] T025 [US2] Implement conditional rendering in app/components/board/WorkloadIndicator.tsx: only display when cardCount > 3
+- [X] T026 [US2] Integrate WorkloadIndicator into UserFilter component in app/components/board/UserFilter.tsx: display next to user name when user has >3 cards
+- [X] T027 [US2] Connect WorkloadIndicator to workload calculation: use calculateUserWorkloads() to get cardCount for selected user
+- [X] T028 [US2] Implement real-time updates in app/components/board/WorkloadIndicator.tsx: update immediately when card assignments change
 - [ ] T029 [US2] Test indicator appearance: assign 4th card to user, verify indicator appears within 1 second (SC-002)
 - [ ] T030 [US2] Test indicator removal: reassign card to reduce count to 3, verify indicator disappears immediately
 - [ ] T031 [US2] Test non-blocking behavior: with indicator displayed, interact with board, verify indicator doesn't block interactions (FR-007)
@@ -106,12 +106,12 @@
 
 ### Implementation for User Story 3
 
-- [ ] T032 [P] [US3] Create UserStatusBadge component in app/components/board/UserStatusBadge.tsx using ShadCN UI Badge component
-- [ ] T033 [US3] Implement status display in app/components/board/UserStatusBadge.tsx: show "OK" (green variant) or "Busy" (orange/red variant) based on status prop
-- [ ] T034 [US3] Implement status calculation logic in app/components/board/UserStatusBadge.tsx: use getUserStatus() from WorkloadCalculator (≤3 = OK, >3 = Busy)
-- [ ] T035 [US3] Integrate UserStatusBadge into UserFilter component in app/components/board/UserFilter.tsx: display next to selected user name in filter control/board header
-- [ ] T036 [US3] Connect UserStatusBadge to workload calculation: use calculateUserWorkloads() to get status for selected user
-- [ ] T037 [US3] Implement real-time status updates in app/components/board/UserStatusBadge.tsx: update immediately when card count crosses threshold (3 cards)
+- [X] T032 [P] [US3] Create UserStatusBadge component in app/components/board/UserStatusBadge.tsx using ShadCN UI Badge component
+- [X] T033 [US3] Implement status display in app/components/board/UserStatusBadge.tsx: show "OK" (green variant) or "Busy" (orange/red variant) based on status prop
+- [X] T034 [US3] Implement status calculation logic in app/components/board/UserStatusBadge.tsx: use getUserStatus() from WorkloadCalculator (≤3 = OK, >3 = Busy)
+- [X] T035 [US3] Integrate UserStatusBadge into UserFilter component in app/components/board/UserFilter.tsx: display next to selected user name in filter control/board header
+- [X] T036 [US3] Connect UserStatusBadge to workload calculation: use calculateUserWorkloads() to get status for selected user
+- [X] T037 [US3] Implement real-time status updates in app/components/board/UserStatusBadge.tsx: update immediately when card count crosses threshold (3 cards)
 - [ ] T038 [US3] Test status display: filter by user with 3 cards, verify status shows "OK"
 - [ ] T039 [US3] Test status change to Busy: assign 4th card to user, verify status changes to "Busy" within 1 second (SC-003)
 - [ ] T040 [US3] Test status change to OK: reassign card to reduce count to 3, verify status changes back to "OK" immediately
@@ -125,14 +125,14 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T042 [P] Add mobile-responsive design to UserFilter component in app/components/board/UserFilter.tsx: ensure touch-friendly interactions, responsive layout for iPhone 15 (390x844px)
-- [ ] T043 [P] Add mobile-responsive design to WorkloadIndicator component in app/components/board/WorkloadIndicator.tsx: ensure badge is readable and touch-friendly on mobile
-- [ ] T044 [P] Add mobile-responsive design to UserStatusBadge component in app/components/board/UserStatusBadge.tsx: ensure status badge is visible and accessible on mobile
-- [ ] T045 [P] Configure PWA support: verify next-pwa is configured in next.config.js, ensure service worker doesn't interfere with localStorage operations
+- [X] T042 [P] Add mobile-responsive design to UserFilter component in app/components/board/UserFilter.tsx: ensure touch-friendly interactions, responsive layout for iPhone 15 (390x844px)
+- [X] T043 [P] Add mobile-responsive design to WorkloadIndicator component in app/components/board/WorkloadIndicator.tsx: ensure badge is readable and touch-friendly on mobile
+- [X] T044 [P] Add mobile-responsive design to UserStatusBadge component in app/components/board/UserStatusBadge.tsx: ensure status badge is visible and accessible on mobile
+- [X] T045 [P] Configure PWA support: verify next-pwa is configured in next.config.js, ensure service worker doesn't interfere with localStorage operations
 - [ ] T046 [P] Test PWA installation: verify app can be installed on iPhone 15 Safari, test offline functionality with filter state persistence
-- [ ] T047 [P] Add error handling for localStorage access failures (private browsing mode) in app/lib/utils/storage.ts and app/lib/services/filter-service.ts
-- [ ] T048 [P] Optimize performance: ensure useMemo prevents unnecessary recalculations, verify filtering completes within 2 seconds (SC-001)
-- [ ] T049 [P] Add accessibility features: ARIA labels for filter control, keyboard navigation support, WCAG AA color contrast for badges and status
+- [X] T047 [P] Add error handling for localStorage access failures (private browsing mode) in app/lib/utils/storage.ts and app/lib/services/filter-service.ts
+- [X] T048 [P] Optimize performance: ensure useMemo prevents unnecessary recalculations, verify filtering completes within 2 seconds (SC-001)
+- [X] T049 [P] Add accessibility features: ARIA labels for filter control, keyboard navigation support, WCAG AA color contrast for badges and status
 - [ ] T050 [P] Test edge cases: user with 0 cards (shows in filter, status OK), rapid status changes, filter applied during card movement
 - [ ] T051 [P] Test on mobile devices: verify feature works correctly on iPhone 15+ with touch interactions and responsive layout (SC-009)
 - [ ] T052 [P] Test PWA functionality: verify offline support works, filter state persists, app can be installed (SC-010)
