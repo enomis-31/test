@@ -90,34 +90,53 @@ function notificationReducer(
     }
 
     case 'SHOW_EVENT_DETAILS': {
-      const notification = state.notifications.find(
-        (n) => n.id === action.payload
-      );
-      if (!notification) {
-        logger.warn('Notification not found for showing details', {
+      try {
+        const notification = state.notifications.find(
+          (n) => n.id === action.payload
+        );
+        if (!notification) {
+          logger.error('Notification not found for showing details', undefined, {
+            function: 'notificationReducer',
+            notificationId: action.payload,
+            availableNotificationIds: state.notifications.map((n) => n.id),
+          });
+          return state;
+        }
+        // Get full event details from storage
+        let event: CalendarEvent | null = null;
+        try {
+          event = getEventById(notification.eventId);
+        } catch (error) {
+          logger.error('Failed to get event by ID from storage', error, {
+            function: 'notificationReducer',
+            notificationId: action.payload,
+            eventId: notification.eventId,
+          });
+        }
+        if (!event) {
+          logger.error('Event not found in storage', undefined, {
+            function: 'notificationReducer',
+            notificationId: action.payload,
+            eventId: notification.eventId,
+          });
+        }
+        return {
+          ...state,
+          selectedEventDetails: event,
+          isDetailsModalOpen: true,
+          // Dismiss the notification when showing details
+          notifications: state.notifications.filter(
+            (n) => n.id !== action.payload
+          ),
+        };
+      } catch (error) {
+        logger.error('Unexpected error in SHOW_EVENT_DETAILS reducer', error, {
           function: 'notificationReducer',
           notificationId: action.payload,
         });
+        // Fail loud: log error but return state to prevent breaking the app
         return state;
       }
-      // Get full event details from storage
-      const event = getEventById(notification.eventId);
-      if (!event) {
-        logger.warn('Event not found in storage', {
-          function: 'notificationReducer',
-          notificationId: action.payload,
-          eventId: notification.eventId,
-        });
-      }
-      return {
-        ...state,
-        selectedEventDetails: event,
-        isDetailsModalOpen: true,
-        // Dismiss the notification when showing details
-        notifications: state.notifications.filter(
-          (n) => n.id !== action.payload
-        ),
-      };
     }
 
     case 'HIDE_EVENT_DETAILS': {
@@ -149,8 +168,16 @@ function notificationReducer(
       };
     }
 
-    default:
+    default: {
+      // Fail loud: log unknown action types
+      const unknownAction = action as { type: string };
+      logger.error('Unknown notification action type', undefined, {
+        function: 'notificationReducer',
+        actionType: unknownAction.type,
+        availableActions: ['ADD_NOTIFICATION', 'DISMISS_NOTIFICATION', 'SHOW_EVENT_DETAILS', 'HIDE_EVENT_DETAILS', 'MUTE_SOUND', 'CLEAR_OLD_NOTIFICATIONS'],
+      });
       return state;
+    }
   }
 }
 

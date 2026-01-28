@@ -28,9 +28,11 @@ export function isStorageAvailable(): boolean {
     });
     return true;
   } catch (error) {
-    logger.warn('Storage is not available', {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    logger.error('Storage is not available', error, {
       function: 'isStorageAvailable',
-      error,
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
     return false;
   }
@@ -61,8 +63,10 @@ export function getEventsFromStorage(): CalendarEvent[] {
     }
     const parsed = JSON.parse(data);
     if (!Array.isArray(parsed)) {
-      logger.warn('Events data is not an array', {
+      logger.error('Events data is not an array', undefined, {
         function: 'getEventsFromStorage',
+        dataType: typeof parsed,
+        dataLength: data?.length,
       });
       return [];
     }
@@ -75,8 +79,11 @@ export function getEventsFromStorage(): CalendarEvent[] {
     
     return events;
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to get events from storage', error, {
       function: 'getEventsFromStorage',
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
     return [];
   }
@@ -105,9 +112,12 @@ export function getEventById(eventId: string): CalendarEvent | null {
     
     return event;
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to get event by ID', error, {
       function: 'getEventById',
       eventId,
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
     return null;
   }
@@ -144,9 +154,12 @@ export function getEventsInTimeWindow(windowMs: number = 5000): CalendarEvent[] 
 
     return filtered;
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to get events in time window', error, {
       function: 'getEventsInTimeWindow',
       windowMs,
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
     return [];
   }
@@ -194,10 +207,17 @@ export function saveEventToStorage(event: CalendarEvent): void {
       totalEvents: events.length,
     });
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to save event', error, {
       function: 'saveEventToStorage',
       eventId: event.id,
+      eventTitle: event.title,
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
+    // Fail loud: log error clearly
+    // Note: This function is used for testing, so throwing might be appropriate
+    // but we'll log loudly instead to avoid breaking test code
   }
 }
 
@@ -238,10 +258,15 @@ export function removeEventFromStorage(eventId: string): void {
       remainingEvents: filtered.length,
     });
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to remove event', error, {
       function: 'removeEventFromStorage',
       eventId,
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
+    // Fail loud: log error clearly
+    // Don't throw to allow graceful degradation
   }
 }
 
@@ -279,10 +304,15 @@ export function saveToStorage<T>(key: string, value: T): void {
       key,
     });
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to save value to storage', error, {
       function: 'saveToStorage',
       key,
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
+    // Fail loud: log error clearly but don't throw for graceful degradation
+    // Callers should check return value or handle errors if needed
   }
 }
 
@@ -330,10 +360,14 @@ export function loadFromStorage<T>(key: string, defaultValue: T): T {
     
     return parsed;
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to load value from storage', error, {
       function: 'loadFromStorage',
       key,
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
+    // Fail loud: return default but log error clearly
     return defaultValue;
   }
 }

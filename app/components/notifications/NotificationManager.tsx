@@ -54,11 +54,15 @@ export function NotificationManager() {
           eventId: event.id,
         });
       } catch (error) {
-        logger.warn('Sound playback failed', {
+        // Fail loud: log error with full context
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        logger.error('Sound playback failed - notification will still be shown', error, {
           function: 'handleNotification',
           eventId: event.id,
-          error,
+          eventTitle: event.title,
+          errorMessage,
         });
+        // Don't throw - notification should still be displayed even if sound fails
       }
     },
     [addNotification]

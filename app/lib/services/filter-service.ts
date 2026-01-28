@@ -120,7 +120,10 @@ function isStorageAvailable(): boolean {
     localStorage.setItem(testKey, 'test');
     localStorage.removeItem(testKey);
     return true;
-  } catch {
+  } catch (error) {
+    logger.error('Storage availability check failed', error, {
+      function: 'isStorageAvailable',
+    });
     return false;
   }
 }

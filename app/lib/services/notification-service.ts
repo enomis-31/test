@@ -63,9 +63,14 @@ export async function initializeAudio(): Promise<boolean> {
     
     return true;
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to initialize audio', error, {
       function: 'initializeAudio',
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
+    // Fail loud: log error clearly, but return false for graceful degradation
+    // Callers should handle this appropriately
     return false;
   }
 }
@@ -113,15 +118,13 @@ async function preloadNotificationSound(): Promise<void> {
       });
       return; // Success, exit loop
     } catch (error) {
-      logger.warn('Failed to load sound from URL', {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      logger.error('Failed to load sound from URL', error, {
         function: 'preloadNotificationSound',
         url,
+        errorMessage,
       });
-      logger.debug('Sound loading error details', {
-        function: 'preloadNotificationSound',
-        url,
-        error,
-      });
+      // Continue to next URL, but log error clearly
     }
   }
   
@@ -179,10 +182,16 @@ export async function playNotificationSound(): Promise<boolean> {
 
     return true;
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to play notification sound', error, {
       function: 'playNotificationSound',
+      errorMessage,
     });
-    // Try fallback
+    // Try fallback, but log that we're falling back
+    logger.warn('Attempting fallback sound playback after primary method failed', {
+      function: 'playNotificationSound',
+      originalError: errorMessage,
+    });
     return playFallbackSound();
   }
 }
@@ -216,11 +225,13 @@ function playFallbackSound(): boolean {
         const audio = new Audio(url);
         audio.volume = 0.5;
         audio.play().catch((playError) => {
-          logger.debug('Failed to play fallback audio element', {
+          logger.error('Failed to play fallback audio element', playError, {
             function: 'playFallbackSound',
             url,
-            error: playError,
+            errorMessage: playError instanceof Error ? playError.message : String(playError),
+            stack: playError instanceof Error ? playError.stack : undefined,
           });
+          // Don't re-throw - let the loop continue to try next URL
         });
         
         logger.info('Fallback sound playback initiated', {
@@ -229,11 +240,11 @@ function playFallbackSound(): boolean {
         });
         return true;
       } catch (error) {
-        logger.debug('Error creating fallback audio element', {
+        logger.error('Error creating fallback audio element', error, {
           function: 'playFallbackSound',
           url,
-          error,
         });
+        // Continue to next URL, but log as error
         continue;
       }
     }
@@ -244,9 +255,13 @@ function playFallbackSound(): boolean {
     });
     return false;
   } catch (error) {
-    logger.error('Fallback sound playback failed', error, {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    logger.error('Fallback sound playback failed completely', error, {
       function: 'playFallbackSound',
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
+    // Fail loud: log error clearly, return false for graceful degradation
     return false;
   }
 }
@@ -282,11 +297,18 @@ export function setupAudioOnUserInteraction(): void {
     return;
   }
 
-  const enableAudio = () => {
+  const enableAudio = async () => {
     logger.debug('User interaction detected, enabling audio', {
       function: 'setupAudioOnUserInteraction',
     });
-    initializeAudio();
+    try {
+      await initializeAudio();
+    } catch (error) {
+      // Fail loud: log error but don't prevent app from working
+      logger.error('Failed to initialize audio on user interaction', error, {
+        function: 'setupAudioOnUserInteraction',
+      });
+    }
     // Remove listeners after first interaction
     window.removeEventListener('click', enableAudio);
     window.removeEventListener('touchstart', enableAudio);
