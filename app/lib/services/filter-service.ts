@@ -1,6 +1,8 @@
 import { Card } from '@/app/types/user';
 import { saveToStorage, loadFromStorage } from '@/app/lib/utils/storage';
+import { createLogger } from '@/app/lib/utils/logger';
 
+const logger = createLogger('FilterService');
 const FILTER_STORAGE_KEY = 'user_filter';
 
 /**
@@ -14,10 +16,29 @@ export class FilterService {
    * @returns Filtered array of cards
    */
   static getFilteredCards(cards: Card[], userId: string | null): Card[] {
+    logger.debug('Filtering cards', {
+      function: 'getFilteredCards',
+      totalCards: cards.length,
+      userId,
+    });
+
     if (!userId) {
+      logger.debug('No user filter, returning all cards', {
+        function: 'getFilteredCards',
+      });
       return cards;
     }
-    return cards.filter((card) => card.assignedUserId === userId);
+
+    const filtered = cards.filter((card) => card.assignedUserId === userId);
+    
+    logger.debug('Cards filtered', {
+      function: 'getFilteredCards',
+      totalCards: cards.length,
+      filteredCount: filtered.length,
+      userId,
+    });
+
+    return filtered;
   }
 
   /**
@@ -25,8 +46,18 @@ export class FilterService {
    * @param userId - User ID to save, or null/empty string to clear filter
    */
   static saveFilterToStorage(userId: string | null): void {
+    logger.debug('Saving filter to storage', {
+      function: 'saveFilterToStorage',
+      userId,
+    });
+
     const value = userId || '';
     saveToStorage(FILTER_STORAGE_KEY, value);
+
+    logger.debug('Filter saved to storage', {
+      function: 'saveFilterToStorage',
+      userId,
+    });
   }
 
   /**
@@ -34,20 +65,44 @@ export class FilterService {
    * @returns User ID if filter exists, or null if no filter is saved
    */
   static loadFilterFromStorage(): string | null {
+    logger.debug('Loading filter from storage', {
+      function: 'loadFilterFromStorage',
+    });
+
     const value = loadFromStorage<string>(FILTER_STORAGE_KEY, '');
-    return value || null;
+    const result = value || null;
+
+    logger.debug('Filter loaded from storage', {
+      function: 'loadFilterFromStorage',
+      userId: result,
+    });
+
+    return result;
   }
 
   /**
    * Clears the filter by removing it from localStorage.
    */
   static clearFilter(): void {
+    logger.debug('Clearing filter', {
+      function: 'clearFilter',
+    });
+
     try {
       if (typeof window !== 'undefined' && isStorageAvailable()) {
         localStorage.removeItem(FILTER_STORAGE_KEY);
+        logger.debug('Filter cleared successfully', {
+          function: 'clearFilter',
+        });
+      } else {
+        logger.warn('Cannot clear filter: storage not available', {
+          function: 'clearFilter',
+        });
       }
     } catch (error) {
-      console.error('[FilterService] Failed to clear filter:', error);
+      logger.error('Failed to clear filter', error, {
+        function: 'clearFilter',
+      });
     }
   }
 }

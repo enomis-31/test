@@ -1,4 +1,7 @@
 import { format, parseISO, isValid } from 'date-fns';
+import { createLogger } from '@/app/lib/utils/logger';
+
+const logger = createLogger('DateUtils');
 
 /**
  * Checks if an event's start time falls within a time window of the current time.
@@ -10,15 +13,34 @@ export function isEventTimeInWindow(
   eventStartTime: string,
   windowSeconds: number = 5
 ): boolean {
+  logger.debug('Checking if event time is in window', {
+    function: 'isEventTimeInWindow',
+    eventStartTime,
+    windowSeconds,
+  });
+
   try {
     const eventTime = new Date(eventStartTime).getTime();
     const now = getCurrentTime();
     const windowMs = windowSeconds * 1000;
     const windowStart = now - windowMs;
     const windowEnd = now + windowMs;
-    return eventTime >= windowStart && eventTime <= windowEnd;
+    const inWindow = eventTime >= windowStart && eventTime <= windowEnd;
+    
+    logger.debug('Event time window check completed', {
+      function: 'isEventTimeInWindow',
+      eventStartTime,
+      windowSeconds,
+      inWindow,
+    });
+    
+    return inWindow;
   } catch (error) {
-    console.error('[DateUtils] Failed to check event time window:', error);
+    logger.error('Failed to check event time window', error, {
+      function: 'isEventTimeInWindow',
+      eventStartTime,
+      windowSeconds,
+    });
     return false;
   }
 }
@@ -29,14 +51,34 @@ export function isEventTimeInWindow(
  * @returns Formatted time string (e.g., "14:30" or "2:30 PM")
  */
 export function formatEventTime(startTime: string): string {
+  logger.debug('Formatting event time', {
+    function: 'formatEventTime',
+    startTime,
+  });
+
   try {
     const date = parseISO(startTime);
     if (!isValid(date)) {
+      logger.warn('Invalid date for formatting', {
+        function: 'formatEventTime',
+        startTime,
+      });
       return 'Invalid time';
     }
-    return format(date, 'HH:mm');
+    const formatted = format(date, 'HH:mm');
+    
+    logger.debug('Event time formatted', {
+      function: 'formatEventTime',
+      startTime,
+      formatted,
+    });
+    
+    return formatted;
   } catch (error) {
-    console.error('[DateUtils] Failed to format event time:', error);
+    logger.error('Failed to format event time', error, {
+      function: 'formatEventTime',
+      startTime,
+    });
     return 'Invalid time';
   }
 }
@@ -47,14 +89,34 @@ export function formatEventTime(startTime: string): string {
  * @returns Formatted date and time string (e.g., "Jan 25, 2026 at 14:30")
  */
 export function formatEventDateTime(startTime: string): string {
+  logger.debug('Formatting event date and time', {
+    function: 'formatEventDateTime',
+    startTime,
+  });
+
   try {
     const date = parseISO(startTime);
     if (!isValid(date)) {
+      logger.warn('Invalid date for formatting', {
+        function: 'formatEventDateTime',
+        startTime,
+      });
       return 'Invalid date';
     }
-    return format(date, "MMM d, yyyy 'at' HH:mm");
+    const formatted = format(date, "MMM d, yyyy 'at' HH:mm");
+    
+    logger.debug('Event date and time formatted', {
+      function: 'formatEventDateTime',
+      startTime,
+      formatted,
+    });
+    
+    return formatted;
   } catch (error) {
-    console.error('[DateUtils] Failed to format event date time:', error);
+    logger.error('Failed to format event date time', error, {
+      function: 'formatEventDateTime',
+      startTime,
+    });
     return 'Invalid date';
   }
 }
@@ -89,11 +151,28 @@ export function generateNotificationId(): string {
  * @returns Number of minutes until the event (negative if past)
  */
 export function getMinutesUntilEvent(eventStartTime: string): number {
+  logger.debug('Calculating minutes until event', {
+    function: 'getMinutesUntilEvent',
+    eventStartTime,
+  });
+
   try {
     const eventTime = new Date(eventStartTime).getTime();
     const now = getCurrentTime();
-    return Math.round((eventTime - now) / 60000);
+    const minutes = Math.round((eventTime - now) / 60000);
+    
+    logger.debug('Minutes until event calculated', {
+      function: 'getMinutesUntilEvent',
+      eventStartTime,
+      minutes,
+    });
+    
+    return minutes;
   } catch (error) {
+    logger.error('Failed to calculate minutes until event', error, {
+      function: 'getMinutesUntilEvent',
+      eventStartTime,
+    });
     return 0;
   }
 }

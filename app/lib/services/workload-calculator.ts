@@ -1,4 +1,7 @@
 import { Card, User, UserWorkload } from '@/app/types/user';
+import { createLogger } from '@/app/lib/utils/logger';
+
+const logger = createLogger('WorkloadCalculator');
 
 /**
  * Service for calculating user workloads based on card assignments.
@@ -14,6 +17,12 @@ export class WorkloadCalculator {
     cards: Card[],
     users: User[]
   ): Map<string, UserWorkload> {
+    logger.debug('Calculating user workloads', {
+      function: 'calculateUserWorkloads',
+      cardCount: cards.length,
+      userCount: users.length,
+    });
+
     const workloadMap = new Map<string, UserWorkload>();
 
     // Initialize workloads for all users (including users with 0 cards)
@@ -27,6 +36,7 @@ export class WorkloadCalculator {
     });
 
     // Count cards per user
+    let unassignedCards = 0;
     cards.forEach((card) => {
       if (card.assignedUserId) {
         const workload = workloadMap.get(card.assignedUserId);
@@ -34,6 +44,11 @@ export class WorkloadCalculator {
           workload.cardCount += 1;
         } else {
           // User not in users list but has cards assigned - create workload entry
+          logger.debug('Card assigned to unknown user, creating workload entry', {
+            function: 'calculateUserWorkloads',
+            cardId: card.id,
+            assignedUserId: card.assignedUserId,
+          });
           workloadMap.set(card.assignedUserId, {
             userId: card.assignedUserId,
             cardCount: 1,
@@ -41,13 +56,26 @@ export class WorkloadCalculator {
             hasIndicator: false,
           });
         }
+      } else {
+        unassignedCards++;
       }
     });
 
     // Calculate status and indicator flags
+    let busyUsers = 0;
     workloadMap.forEach((workload) => {
       workload.status = workload.cardCount > 3 ? 'Busy' : 'OK';
       workload.hasIndicator = workload.cardCount > 3;
+      if (workload.hasIndicator) {
+        busyUsers++;
+      }
+    });
+
+    logger.info('User workloads calculated', {
+      function: 'calculateUserWorkloads',
+      totalUsers: workloadMap.size,
+      busyUsers,
+      unassignedCards,
     });
 
     return workloadMap;
@@ -65,8 +93,22 @@ export class WorkloadCalculator {
     cards: Card[],
     users: User[]
   ): UserWorkload | null {
+    logger.debug('Getting user workload', {
+      function: 'getUserWorkload',
+      userId,
+    });
+
     const workloads = this.calculateUserWorkloads(cards, users);
-    return workloads.get(userId) || null;
+    const workload = workloads.get(userId) || null;
+
+    logger.debug('User workload retrieved', {
+      function: 'getUserWorkload',
+      userId,
+      found: !!workload,
+      cardCount: workload?.cardCount ?? 0,
+    });
+
+    return workload;
   }
 
   /**
@@ -81,7 +123,20 @@ export class WorkloadCalculator {
     cards: Card[],
     users: User[]
   ): 'OK' | 'Busy' | null {
+    logger.debug('Getting user status', {
+      function: 'getUserStatus',
+      userId,
+    });
+
     const workload = this.getUserWorkload(userId, cards, users);
-    return workload ? workload.status : null;
+    const status = workload ? workload.status : null;
+
+    logger.debug('User status retrieved', {
+      function: 'getUserStatus',
+      userId,
+      status,
+    });
+
+    return status;
   }
 }

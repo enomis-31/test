@@ -10,6 +10,9 @@ import {
 import { CalendarEvent } from '@/app/types/event';
 import { NotificationList } from './NotificationList';
 import { EventDetailsModal } from './EventDetailsModal';
+import { createLogger } from '@/app/lib/utils/logger';
+
+const logger = createLogger('NotificationManager');
 
 /**
  * NotificationManager component.
@@ -34,14 +37,28 @@ export function NotificationManager() {
   // Handle notification callback
   const handleNotification = useCallback(
     async (event: CalendarEvent) => {
+      logger.info('Handling notification for event', {
+        function: 'handleNotification',
+        eventId: event.id,
+        eventTitle: event.title,
+      });
+
       // Add notification to state
       addNotification(event);
 
       // Play sound
       try {
         await playNotificationSound();
+        logger.debug('Notification sound played successfully', {
+          function: 'handleNotification',
+          eventId: event.id,
+        });
       } catch (error) {
-        console.warn('[NotificationManager] Sound playback failed:', error);
+        logger.warn('Sound playback failed', {
+          function: 'handleNotification',
+          eventId: event.id,
+          error,
+        });
       }
     },
     [addNotification]
@@ -57,9 +74,21 @@ export function NotificationManager() {
 
   // Initialize event monitoring
   useEffect(() => {
+    logger.debug('NotificationManager effect running', {
+      function: 'useEffect[init]',
+      isInitialized: isInitialized.current,
+    });
+
     if (isInitialized.current) {
+      logger.debug('Already initialized, skipping', {
+        function: 'useEffect[init]',
+      });
       return;
     }
+
+    logger.info('Initializing NotificationManager', {
+      function: 'useEffect[init]',
+    });
 
     isInitialized.current = true;
 
@@ -74,30 +103,58 @@ export function NotificationManager() {
     // Start monitoring
     monitor.startMonitoring();
 
-    if (process.env.NODE_ENV === 'development') {
-      console.log('[NotificationManager] Initialized and monitoring started');
-    }
+    logger.info('NotificationManager initialized and monitoring started', {
+      function: 'useEffect[init]',
+    });
 
     // Cleanup on unmount
     return () => {
+      logger.info('Cleaning up NotificationManager', {
+        function: 'useEffect[cleanup]',
+      });
       monitor.stopMonitoring();
     };
   }, [handleNotification, isTabActive]);
 
   // Clean up old notifications periodically
   useEffect(() => {
+    logger.debug('Setting up periodic notification cleanup', {
+      function: 'useEffect[cleanup]',
+    });
+
     const cleanupInterval = setInterval(() => {
+      logger.debug('Running periodic notification cleanup', {
+        function: 'useEffect[cleanup]',
+      });
       clearOldNotifications(300000); // 5 minutes
     }, 60000); // Check every minute
 
-    return () => clearInterval(cleanupInterval);
+    return () => {
+      logger.debug('Clearing periodic notification cleanup interval', {
+        function: 'useEffect[cleanup]',
+      });
+      clearInterval(cleanupInterval);
+    };
   }, [clearOldNotifications]);
 
   // Handle visibility change - trigger check when tab becomes active
   useEffect(() => {
+    logger.debug('Setting up visibility change listener', {
+      function: 'useEffect[visibility]',
+    });
+
     const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
+      const isVisible = document.visibilityState === 'visible';
+      logger.debug('Visibility state changed', {
+        function: 'handleVisibilityChange',
+        isVisible,
+      });
+
+      if (isVisible) {
         // Trigger an immediate check when tab becomes active
+        logger.debug('Tab became visible, triggering immediate check', {
+          function: 'handleVisibilityChange',
+        });
         eventMonitorRef.current.triggerCheck();
       }
     };
@@ -105,6 +162,9 @@ export function NotificationManager() {
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
+      logger.debug('Removing visibility change listener', {
+        function: 'useEffect[visibility]',
+      });
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
