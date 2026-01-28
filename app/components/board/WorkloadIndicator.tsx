@@ -2,10 +2,13 @@
 
 import { Badge } from '@/app/components/ui/badge';
 
+/**
+ * Props for the WorkloadIndicator component.
+ */
 interface WorkloadIndicatorProps {
   /** Number of cards assigned to the user */
   cardCount: number;
-  /** Whether to show the indicator (should be true when cardCount > 3) */
+  /** Whether to show the indicator badge (should be true when cardCount > 3) */
   show?: boolean;
 }
 

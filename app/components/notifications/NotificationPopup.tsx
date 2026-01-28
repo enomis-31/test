@@ -7,10 +7,17 @@ import { formatEventTime } from '@/app/lib/utils/date-utils';
 import { cn } from '@/app/lib/utils/cn';
 import { Button } from '@/app/components/ui/button';
 
+/**
+ * Props for the NotificationPopup component.
+ */
 interface NotificationPopupProps {
+  /** Notification state object containing event information and display state */
   notification: NotificationState;
+  /** Callback function called when the notification is dismissed */
   onDismiss: (id: string) => void;
+  /** Callback function called when the notification is clicked to show event details */
   onShowDetails: (id: string) => void;
+  /** Optional callback function called when sound is muted for this notification */
   onMuteSound?: (id: string) => void;
 }
 
@@ -20,20 +27,31 @@ export function NotificationPopup({
   onShowDetails,
   onMuteSound,
 }: NotificationPopupProps) {
+  /**
+   * Handles dismiss button click event.
+   * @param e - Mouse event from the dismiss button
+   */
   const handleDismiss = useCallback(
-    (e: React.MouseEvent) => {
+    (e: React.MouseEvent<HTMLButtonElement>): void => {
       e.stopPropagation();
       onDismiss(notification.id);
     },
     [notification.id, onDismiss]
   );
 
-  const handleClick = useCallback(() => {
+  /**
+   * Handles notification click to show event details.
+   */
+  const handleClick = useCallback((): void => {
     onShowDetails(notification.id);
   }, [notification.id, onShowDetails]);
 
+  /**
+   * Handles mute sound button click event.
+   * @param e - Mouse event from the mute button
+   */
   const handleMute = useCallback(
-    (e: React.MouseEvent) => {
+    (e: React.MouseEvent<HTMLButtonElement>): void => {
       e.stopPropagation();
       if (onMuteSound) {
         onMuteSound(notification.id);
@@ -42,9 +60,13 @@ export function NotificationPopup({
     [notification.id, onMuteSound]
   );
 
-  // Handle keyboard navigation
+  /**
+   * Handles keyboard navigation for the notification.
+   * Enter key shows details, Escape key dismisses.
+   * @param e - Keyboard event
+   */
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
+    (e: React.KeyboardEvent<HTMLDivElement>): void => {
       if (e.key === 'Enter') {
         onShowDetails(notification.id);
       } else if (e.key === 'Escape') {

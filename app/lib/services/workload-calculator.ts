@@ -112,7 +112,8 @@ export class WorkloadCalculator {
   }
 
   /**
-   * Gets the status for a specific user based on their card count.
+   * Gets the workload status for a specific user based on their card count.
+   * Status is "OK" if cardCount ≤ 3, "Busy" if cardCount > 3.
    * @param userId - User ID to get status for
    * @param cards - Array of all cards
    * @param users - Array of all users (to ensure user exists)

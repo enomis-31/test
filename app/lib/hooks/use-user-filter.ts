@@ -6,11 +6,33 @@ import { createLogger } from '@/app/lib/utils/logger';
 const logger = createLogger('useUserFilter');
 
 /**
- * Hook for managing user filter state with localStorage persistence.
- * @param cards - Array of all cards to filter
- * @returns Filter state and methods
+ * Return type for the useUserFilter hook.
  */
-export function useUserFilter(cards: Card[]) {
+export interface UseUserFilterReturn {
+  /** Currently selected user ID for filtering, or null if no filter is active */
+  selectedUserId: string | null;
+  /** Function to set the selected user ID (pass null to clear filter) */
+  setSelectedUserId: (userId: string | null) => void;
+  /** Filtered array of cards based on selectedUserId */
+  filteredCards: Card[];
+  /** Whether a filter is currently active (true when selectedUserId !== null) */
+  isFilterActive: boolean;
+  /** Function to clear the current filter (sets selectedUserId to null) */
+  clearFilter: () => void;
+}
+
+/**
+ * Hook for managing user filter state with localStorage persistence.
+ * Automatically saves filter selection to localStorage and restores it on mount.
+ * @param cards - Array of all cards to filter
+ * @returns Object containing filter state and methods:
+ *   - selectedUserId: Currently selected user ID or null
+ *   - setSelectedUserId: Function to update the selected user ID
+ *   - filteredCards: Filtered array of cards based on selectedUserId
+ *   - isFilterActive: Boolean indicating if filter is active
+ *   - clearFilter: Function to clear the current filter
+ */
+export function useUserFilter(cards: Card[]): UseUserFilterReturn {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(() => {
     // Load saved filter from localStorage on mount
     try {
@@ -54,7 +76,10 @@ export function useUserFilter(cards: Card[]) {
   // Computed filter state
   const isFilterActive = selectedUserId !== null;
 
-  const clearFilter = () => {
+  /**
+   * Clears the current filter by setting selectedUserId to null.
+   */
+  const clearFilter = (): void => {
     setSelectedUserId(null);
   };
 

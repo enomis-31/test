@@ -5,10 +5,17 @@ import { NotificationState } from '@/app/types/event';
 import { NotificationPopup } from './NotificationPopup';
 import { cn } from '@/app/lib/utils/cn';
 
+/**
+ * Props for the NotificationList component.
+ */
 interface NotificationListProps {
+  /** Array of notification states to display */
   notifications: NotificationState[];
+  /** Callback function called when a notification is dismissed */
   onDismiss: (id: string) => void;
+  /** Callback function called when a notification is clicked to show event details */
   onShowDetails: (id: string) => void;
+  /** Optional callback function called when sound is muted for a notification */
   onMuteSound?: (id: string) => void;
 }
 

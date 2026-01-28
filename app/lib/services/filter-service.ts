@@ -109,7 +109,8 @@ export class FilterService {
 
 /**
  * Helper function to check if localStorage is available.
- * @returns true if localStorage is available
+ * Tests localStorage by attempting to set and remove a test item.
+ * @returns true if localStorage is available and accessible, false otherwise
  */
 function isStorageAvailable(): boolean {
   try {

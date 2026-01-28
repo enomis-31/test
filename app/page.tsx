@@ -6,7 +6,13 @@ import { saveEventToStorage, getEventsFromStorage } from '@/app/lib/utils/storag
 import { CalendarEvent } from '@/app/types/event';
 import { Bell, Plus, Trash2, Calendar } from 'lucide-react';
 
+/**
+ * Home page component for managing calendar events and testing notifications.
+ * Provides UI to add test events and view upcoming events.
+ * @returns JSX element for the home page
+ */
 export default function Home() {
+  /** State for managing calendar events */
   const [events, setEvents] = useState<CalendarEvent[]>(() => {
     if (typeof window !== 'undefined') {
       return getEventsFromStorage();
@@ -14,11 +20,18 @@ export default function Home() {
     return [];
   });
 
-  const refreshEvents = () => {
+  /**
+   * Refreshes the events list from localStorage.
+   */
+  const refreshEvents = (): void => {
     setEvents(getEventsFromStorage());
   };
 
-  const addTestEvent = (minutesFromNow: number) => {
+  /**
+   * Adds a test event scheduled for a specified number of minutes from now.
+   * @param minutesFromNow - Number of minutes from now to schedule the event
+   */
+  const addTestEvent = (minutesFromNow: number): void => {
     const now = new Date();
     const eventTime = new Date(now.getTime() + minutesFromNow * 60000);
     
@@ -34,7 +47,10 @@ export default function Home() {
     refreshEvents();
   };
 
-  const clearAllEvents = () => {
+  /**
+   * Clears all events from localStorage and refreshes the list.
+   */
+  const clearAllEvents = (): void => {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('calendar_events');
       refreshEvents();

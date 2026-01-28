@@ -13,12 +13,19 @@ import { X } from 'lucide-react';
 import { WorkloadIndicator } from './WorkloadIndicator';
 import { UserStatusBadge } from './UserStatusBadge';
 
+/**
+ * Props for the UserFilter component.
+ */
 interface UserFilterProps {
+  /** Array of all available users to display in the filter dropdown */
   users: User[];
+  /** Currently selected user ID for filtering, or null if no filter is active */
   selectedUserId: string | null;
+  /** Callback function called when a user is selected from the dropdown */
   onUserSelect: (userId: string | null) => void;
+  /** Callback function called when the clear filter button is clicked */
   onClearFilter: () => void;
-  /** Workload data for users - Map of userId to UserWorkload */
+  /** Optional workload data for users - Map of userId to UserWorkload for displaying status badges */
   workloads?: Map<string, UserWorkload>;
 }
 

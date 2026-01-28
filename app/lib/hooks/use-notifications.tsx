@@ -14,7 +14,9 @@ import { createLogger } from '@/app/lib/utils/logger';
 
 const logger = createLogger('Notifications');
 
-// Action types
+/**
+ * Action types for the notification reducer.
+ */
 type NotificationAction =
   | { type: 'ADD_NOTIFICATION'; payload: NotificationState }
   | { type: 'DISMISS_NOTIFICATION'; payload: string }
@@ -23,31 +25,53 @@ type NotificationAction =
   | { type: 'MUTE_SOUND'; payload: string }
   | { type: 'CLEAR_OLD_NOTIFICATIONS'; payload: number };
 
-// Context state interface
+/**
+ * Internal state interface for the notification context.
+ */
 interface NotificationContextState {
+  /** Array of all notification states */
   notifications: NotificationState[];
+  /** Currently selected event details to display in modal, or null if modal is closed */
   selectedEventDetails: CalendarEvent | null;
+  /** Whether the event details modal is currently open */
   isDetailsModalOpen: boolean;
 }
 
-// Context value interface (state + actions)
+/**
+ * Public interface for the notification context value.
+ * Includes both state and action methods.
+ */
 interface NotificationContextValue extends NotificationContextState {
+  /** Adds a new notification for the given calendar event */
   addNotification: (event: CalendarEvent) => void;
+  /** Dismisses a notification by its ID */
   dismissNotification: (notificationId: string) => void;
+  /** Shows event details modal for a notification */
   showEventDetails: (notificationId: string) => void;
+  /** Hides the event details modal */
   hideEventDetails: () => void;
+  /** Mutes sound for a specific notification */
   muteSound: (notificationId: string) => void;
+  /** Clears notifications older than the specified age in milliseconds */
   clearOldNotifications: (maxAgeMs?: number) => void;
 }
 
-// Initial state
+/**
+ * Initial state for the notification context.
+ */
 const initialState: NotificationContextState = {
   notifications: [],
   selectedEventDetails: null,
   isDetailsModalOpen: false,
 };
 
-// Reducer function
+/**
+ * Reducer function for managing notification state.
+ * Handles all notification-related actions.
+ * @param state - Current notification context state
+ * @param action - Action to perform on the state
+ * @returns New state after applying the action
+ */
 function notificationReducer(
   state: NotificationContextState,
   action: NotificationAction
@@ -181,20 +205,29 @@ function notificationReducer(
   }
 }
 
-// Create context
+/**
+ * React context for notification state and actions.
+ */
 const NotificationContext = createContext<NotificationContextValue | undefined>(
   undefined
 );
 
-// Provider component
+/**
+ * Props for the NotificationProvider component.
+ */
 interface NotificationProviderProps {
+  /** Child components that will have access to the notification context */
   children: ReactNode;
 }
 
 export function NotificationProvider({ children }: NotificationProviderProps) {
   const [state, dispatch] = useReducer(notificationReducer, initialState);
 
-  const addNotification = useCallback((event: CalendarEvent) => {
+  /**
+   * Adds a new notification for a calendar event.
+   * @param event - The calendar event to create a notification for
+   */
+  const addNotification = useCallback((event: CalendarEvent): void => {
     logger.debug('Adding notification', {
       function: 'addNotification',
       eventId: event.id,
@@ -222,7 +255,11 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
     });
   }, []);
 
-  const dismissNotification = useCallback((notificationId: string) => {
+  /**
+   * Dismisses a notification by removing it from the list.
+   * @param notificationId - The ID of the notification to dismiss
+   */
+  const dismissNotification = useCallback((notificationId: string): void => {
     logger.debug('Dismissing notification', {
       function: 'dismissNotification',
       notificationId,
@@ -236,7 +273,11 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
     });
   }, []);
 
-  const showEventDetails = useCallback((notificationId: string) => {
+  /**
+   * Shows event details modal for a notification.
+   * @param notificationId - The ID of the notification to show details for
+   */
+  const showEventDetails = useCallback((notificationId: string): void => {
     logger.debug('Showing event details', {
       function: 'showEventDetails',
       notificationId,
@@ -250,7 +291,10 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
     });
   }, []);
 
-  const hideEventDetails = useCallback(() => {
+  /**
+   * Hides the event details modal.
+   */
+  const hideEventDetails = useCallback((): void => {
     logger.debug('Hiding event details', {
       function: 'hideEventDetails',
     });
@@ -262,7 +306,11 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
     });
   }, []);
 
-  const muteSound = useCallback((notificationId: string) => {
+  /**
+   * Mutes sound for a specific notification.
+   * @param notificationId - The ID of the notification to mute
+   */
+  const muteSound = useCallback((notificationId: string): void => {
     logger.debug('Muting sound for notification', {
       function: 'muteSound',
       notificationId,
@@ -276,8 +324,11 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
     });
   }, []);
 
-  const clearOldNotifications = useCallback((maxAgeMs: number = 300000) => {
-    // Default: 5 minutes
+  /**
+   * Clears notifications older than the specified age.
+   * @param maxAgeMs - Maximum age in milliseconds (default: 300000 = 5 minutes)
+   */
+  const clearOldNotifications = useCallback((maxAgeMs: number = 300000): void => {
     logger.debug('Clearing old notifications', {
       function: 'clearOldNotifications',
       maxAgeMs,
@@ -308,7 +359,12 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
   );
 }
 
-// Custom hook to use notifications
+/**
+ * Custom hook to access notification context.
+ * Must be used within a NotificationProvider.
+ * @returns Notification context value with state and actions
+ * @throws Error if used outside NotificationProvider
+ */
 export function useNotifications(): NotificationContextValue {
   logger.debug('Using notifications hook', {
     function: 'useNotifications',
