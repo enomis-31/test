@@ -92,12 +92,12 @@
 
 ### Implementation for User Story 2
 
-- [ ] T031 [US2] Add dismiss button to NotificationPopup component in app/components/notifications/NotificationPopup.tsx using ShadCN UI Button component
-- [ ] T032 [US2] Implement dismiss handler in app/components/notifications/NotificationPopup.tsx: call dismissNotification action from context on button click
-- [ ] T033 [US2] Update notification reducer in app/lib/hooks/use-notifications.ts: handle DISMISS_NOTIFICATION action, set isDismissed flag, remove from state
-- [ ] T034 [US2] Implement immediate UI removal in app/components/notifications/NotificationPopup.tsx: animate out notification on dismiss, remove from DOM after animation
-- [ ] T035 [US2] Add dismiss functionality to NotificationList component in app/components/notifications/NotificationList.tsx: each notification can be dismissed independently
-- [ ] T036 [US2] Test multiple notification dismissal: verify dismissing one notification doesn't affect others (FR-007, FR-010 requirement)
+- [X] T031 [US2] Add dismiss button to NotificationPopup component in app/components/notifications/NotificationPopup.tsx using ShadCN UI Button component
+- [X] T032 [US2] Implement dismiss handler in app/components/notifications/NotificationPopup.tsx: call dismissNotification action from context on button click
+- [X] T033 [US2] Update notification reducer in app/lib/hooks/use-notifications.ts: handle DISMISS_NOTIFICATION action, set isDismissed flag, remove from state
+- [X] T034 [US2] Implement immediate UI removal in app/components/notifications/NotificationPopup.tsx: animate out notification on dismiss, remove from DOM after animation
+- [X] T035 [US2] Add dismiss functionality to NotificationList component in app/components/notifications/NotificationList.tsx: each notification can be dismissed independently
+- [X] T036 [US2] Test multiple notification dismissal: verify dismissing one notification doesn't affect others (FR-007, FR-010 requirement)
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently. Users can receive and dismiss notifications.
 
@@ -111,14 +111,14 @@
 
 ### Implementation for User Story 3
 
-- [ ] T037 [P] [US3] Create EventDetailsModal component in app/components/notifications/EventDetailsModal.tsx using ShadCN UI Dialog/Modal
-- [ ] T038 [US3] Implement click handler in app/components/notifications/NotificationPopup.tsx: detect click on notification body (not dismiss button), trigger showEventDetails action
-- [ ] T039 [US3] Update notification reducer in app/lib/hooks/use-notifications.ts: handle SHOW_EVENT_DETAILS action, set isDetailsShown flag, dismiss notification popup
-- [ ] T040 [US3] Implement event data retrieval in app/lib/services/notification-service.ts: showEventDetails(notificationId) method that fetches event from localStorage by eventId
-- [ ] T041 [US3] Display event details in app/components/notifications/EventDetailsModal.tsx: show event title, scheduled time (formatted), description if available
-- [ ] T042 [US3] Add close button to EventDetailsModal in app/components/notifications/EventDetailsModal.tsx: close modal and return to main view
-- [ ] T043 [US3] Implement modal state management in app/lib/hooks/use-notifications.ts: track which notification has details shown, handle modal open/close
-- [ ] T044 [US3] Add backdrop click handler in app/components/notifications/EventDetailsModal.tsx: close modal when clicking outside (optional enhancement)
+- [X] T037 [P] [US3] Create EventDetailsModal component in app/components/notifications/EventDetailsModal.tsx using ShadCN UI Dialog/Modal
+- [X] T038 [US3] Implement click handler in app/components/notifications/NotificationPopup.tsx: detect click on notification body (not dismiss button), trigger showEventDetails action
+- [X] T039 [US3] Update notification reducer in app/lib/hooks/use-notifications.ts: handle SHOW_EVENT_DETAILS action, set isDetailsShown flag, dismiss notification popup
+- [X] T040 [US3] Implement event data retrieval in app/lib/services/notification-service.ts: showEventDetails(notificationId) method that fetches event from localStorage by eventId
+- [X] T041 [US3] Display event details in app/components/notifications/EventDetailsModal.tsx: show event title, scheduled time (formatted), description if available
+- [X] T042 [US3] Add close button to EventDetailsModal in app/components/notifications/EventDetailsModal.tsx: close modal and return to main view
+- [X] T043 [US3] Implement modal state management in app/lib/hooks/use-notifications.ts: track which notification has details shown, handle modal open/close
+- [X] T044 [US3] Add backdrop click handler in app/components/notifications/EventDetailsModal.tsx: close modal when clicking outside (optional enhancement)
 
 **Checkpoint**: At this point, all user stories should be independently functional. Users can receive notifications, dismiss them, and view event details.
 
