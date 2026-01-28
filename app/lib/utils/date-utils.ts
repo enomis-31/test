@@ -20,7 +20,34 @@ export function isEventTimeInWindow(
   });
 
   try {
-    const eventTime = new Date(eventStartTime).getTime();
+    if (!eventStartTime || typeof eventStartTime !== 'string') {
+      logger.error('Invalid eventStartTime parameter', undefined, {
+        function: 'isEventTimeInWindow',
+        eventStartTime,
+        type: typeof eventStartTime,
+      });
+      throw new Error(`Invalid eventStartTime: expected string, got ${typeof eventStartTime}`);
+    }
+
+    if (windowSeconds < 0 || !Number.isFinite(windowSeconds)) {
+      logger.error('Invalid windowSeconds parameter', undefined, {
+        function: 'isEventTimeInWindow',
+        windowSeconds,
+      });
+      throw new Error(`Invalid windowSeconds: must be a non-negative number, got ${windowSeconds}`);
+    }
+
+    const eventDate = new Date(eventStartTime);
+    const eventTime = eventDate.getTime();
+    
+    if (isNaN(eventTime)) {
+      logger.error('Invalid date string - cannot parse', undefined, {
+        function: 'isEventTimeInWindow',
+        eventStartTime,
+      });
+      throw new Error(`Invalid date string: "${eventStartTime}" cannot be parsed`);
+    }
+
     const now = getCurrentTime();
     const windowMs = windowSeconds * 1000;
     const windowStart = now - windowMs;
@@ -32,15 +59,23 @@ export function isEventTimeInWindow(
       eventStartTime,
       windowSeconds,
       inWindow,
+      eventTime,
+      now,
+      windowStart,
+      windowEnd,
     });
     
     return inWindow;
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to check event time window', error, {
       function: 'isEventTimeInWindow',
       eventStartTime,
       windowSeconds,
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
+    // Fail loud: return false but error is logged with full context
     return false;
   }
 }
@@ -57,13 +92,23 @@ export function formatEventTime(startTime: string): string {
   });
 
   try {
-    const date = parseISO(startTime);
-    if (!isValid(date)) {
-      logger.warn('Invalid date for formatting', {
+    if (!startTime || typeof startTime !== 'string') {
+      logger.error('Invalid startTime parameter', undefined, {
         function: 'formatEventTime',
         startTime,
+        type: typeof startTime,
       });
-      return 'Invalid time';
+      throw new Error(`Invalid startTime: expected string, got ${typeof startTime}`);
+    }
+
+    const date = parseISO(startTime);
+    if (!isValid(date)) {
+      logger.error('Invalid date for formatting - parseISO returned invalid date', undefined, {
+        function: 'formatEventTime',
+        startTime,
+        parsedDate: date.toString(),
+      });
+      throw new Error(`Invalid date string: "${startTime}" cannot be parsed to a valid date`);
     }
     const formatted = format(date, 'HH:mm');
     
@@ -75,10 +120,14 @@ export function formatEventTime(startTime: string): string {
     
     return formatted;
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to format event time', error, {
       function: 'formatEventTime',
       startTime,
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
+    // Fail loud: return error indicator but log error clearly
     return 'Invalid time';
   }
 }
@@ -95,13 +144,23 @@ export function formatEventDateTime(startTime: string): string {
   });
 
   try {
-    const date = parseISO(startTime);
-    if (!isValid(date)) {
-      logger.warn('Invalid date for formatting', {
+    if (!startTime || typeof startTime !== 'string') {
+      logger.error('Invalid startTime parameter', undefined, {
         function: 'formatEventDateTime',
         startTime,
+        type: typeof startTime,
       });
-      return 'Invalid date';
+      throw new Error(`Invalid startTime: expected string, got ${typeof startTime}`);
+    }
+
+    const date = parseISO(startTime);
+    if (!isValid(date)) {
+      logger.error('Invalid date for formatting - parseISO returned invalid date', undefined, {
+        function: 'formatEventDateTime',
+        startTime,
+        parsedDate: date.toString(),
+      });
+      throw new Error(`Invalid date string: "${startTime}" cannot be parsed to a valid date`);
     }
     const formatted = format(date, "MMM d, yyyy 'at' HH:mm");
     
@@ -113,10 +172,14 @@ export function formatEventDateTime(startTime: string): string {
     
     return formatted;
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to format event date time', error, {
       function: 'formatEventDateTime',
       startTime,
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
+    // Fail loud: return error indicator but log error clearly
     return 'Invalid date';
   }
 }
@@ -157,7 +220,26 @@ export function getMinutesUntilEvent(eventStartTime: string): number {
   });
 
   try {
-    const eventTime = new Date(eventStartTime).getTime();
+    if (!eventStartTime || typeof eventStartTime !== 'string') {
+      logger.error('Invalid eventStartTime parameter', undefined, {
+        function: 'getMinutesUntilEvent',
+        eventStartTime,
+        type: typeof eventStartTime,
+      });
+      throw new Error(`Invalid eventStartTime: expected string, got ${typeof eventStartTime}`);
+    }
+
+    const eventDate = new Date(eventStartTime);
+    const eventTime = eventDate.getTime();
+    
+    if (isNaN(eventTime)) {
+      logger.error('Invalid date string - cannot parse', undefined, {
+        function: 'getMinutesUntilEvent',
+        eventStartTime,
+      });
+      throw new Error(`Invalid date string: "${eventStartTime}" cannot be parsed`);
+    }
+
     const now = getCurrentTime();
     const minutes = Math.round((eventTime - now) / 60000);
     
@@ -165,14 +247,20 @@ export function getMinutesUntilEvent(eventStartTime: string): number {
       function: 'getMinutesUntilEvent',
       eventStartTime,
       minutes,
+      eventTime,
+      now,
     });
     
     return minutes;
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
     logger.error('Failed to calculate minutes until event', error, {
       function: 'getMinutesUntilEvent',
       eventStartTime,
+      errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
     });
+    // Fail loud: return 0 but error is logged with full context
     return 0;
   }
 }

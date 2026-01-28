@@ -183,9 +183,16 @@ export class EventMonitor {
       // Clean up old notification keys (older than 1 minute)
       this.cleanupNotifiedEventIds();
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       logger.error('Error checking events for notifications', error, {
         function: 'checkEventsForNotifications',
+        errorMessage,
+        stack: error instanceof Error ? error.stack : undefined,
+        hasCallback: !!this.notificationCallback,
+        hasVisibilityCallback: !!this.isTabActiveCallback,
       });
+      // Fail loud: log error clearly but don't throw to prevent breaking the monitoring loop
+      // The error is logged with full context for debugging
     }
   }
 
@@ -205,19 +212,48 @@ export class EventMonitor {
    * Cleans up old notification keys to prevent memory leaks.
    */
   private cleanupNotifiedEventIds(): void {
-    // Keep only recent notification keys (last 10 minutes worth)
-    const currentTimeBucket = Math.floor(Date.now() / 60000);
-    const keysToRemove: string[] = [];
+    try {
+      // Keep only recent notification keys (last 10 minutes worth)
+      const currentTimeBucket = Math.floor(Date.now() / 60000);
+      const keysToRemove: string[] = [];
 
-    this.notifiedEventIds.forEach((key) => {
-      const parts = key.split('-');
-      const timeBucket = parseInt(parts[parts.length - 1], 10);
-      if (currentTimeBucket - timeBucket > 10) {
-        keysToRemove.push(key);
+      this.notifiedEventIds.forEach((key) => {
+        try {
+          const parts = key.split('-');
+          const timeBucket = parseInt(parts[parts.length - 1], 10);
+          if (isNaN(timeBucket)) {
+            logger.warn('Invalid time bucket in notification key', {
+              function: 'cleanupNotifiedEventIds',
+              key,
+            });
+            return;
+          }
+          if (currentTimeBucket - timeBucket > 10) {
+            keysToRemove.push(key);
+          }
+        } catch (error) {
+          logger.error('Error processing notification key during cleanup', error, {
+            function: 'cleanupNotifiedEventIds',
+            key,
+          });
+          // Continue processing other keys
+        }
+      });
+
+      keysToRemove.forEach((key) => this.notifiedEventIds.delete(key));
+      
+      if (keysToRemove.length > 0) {
+        logger.debug('Cleaned up old notification keys', {
+          function: 'cleanupNotifiedEventIds',
+          removedCount: keysToRemove.length,
+        });
       }
-    });
-
-    keysToRemove.forEach((key) => this.notifiedEventIds.delete(key));
+    } catch (error) {
+      logger.error('Failed to cleanup notification keys', error, {
+        function: 'cleanupNotifiedEventIds',
+      });
+      // Fail loud: log error but don't throw to prevent breaking monitoring
+    }
   }
 
   /**
