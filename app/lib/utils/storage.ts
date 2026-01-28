@@ -118,3 +118,51 @@ export function removeEventFromStorage(eventId: string): void {
     console.error('[Storage] Failed to remove event:', error);
   }
 }
+
+/**
+ * Saves a value to localStorage with JSON serialization and error handling.
+ * @param key - Storage key
+ * @param value - Value to save (must be JSON-serializable)
+ */
+export function saveToStorage<T>(key: string, value: T): void {
+  try {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    if (!isStorageAvailable()) {
+      console.warn(`[Storage] localStorage not available, cannot save key: ${key}`);
+      return;
+    }
+    const serialized = JSON.stringify(value);
+    localStorage.setItem(key, serialized);
+  } catch (error) {
+    console.error(`[Storage] Failed to save key "${key}" to storage:`, error);
+  }
+}
+
+/**
+ * Loads a value from localStorage with JSON parsing and error handling.
+ * @param key - Storage key
+ * @param defaultValue - Default value to return if key doesn't exist or parsing fails
+ * @returns Parsed value or defaultValue
+ */
+export function loadFromStorage<T>(key: string, defaultValue: T): T {
+  try {
+    if (typeof window === 'undefined') {
+      return defaultValue;
+    }
+    if (!isStorageAvailable()) {
+      console.warn(`[Storage] localStorage not available, returning default for key: ${key}`);
+      return defaultValue;
+    }
+    const data = localStorage.getItem(key);
+    if (data === null) {
+      return defaultValue;
+    }
+    const parsed = JSON.parse(data) as T;
+    return parsed;
+  } catch (error) {
+    console.error(`[Storage] Failed to load key "${key}" from storage:`, error);
+    return defaultValue;
+  }
+}
