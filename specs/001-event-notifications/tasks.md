@@ -64,21 +64,21 @@
 
 ### Implementation for User Story 1
 
-- [ ] T016 [P] [US1] Create EventMonitor service class in app/lib/services/event-monitor.ts with startMonitoring() and stopMonitoring() methods
-- [ ] T017 [US1] Implement polling logic in app/lib/services/event-monitor.ts: setInterval every 60 seconds, check localStorage for events
-- [ ] T018 [US1] Implement time window check in app/lib/services/event-monitor.ts: filter events where startTime falls within ±5 seconds of current time
-- [ ] T019 [US1] Implement duplicate prevention in app/lib/services/event-monitor.ts: track notified events by eventId + time window to prevent duplicate notifications
-- [ ] T020 [US1] Create NotificationService class in app/lib/services/notification-service.ts with triggerNotification(event) method
-- [ ] T021 [US1] Implement notification creation in app/lib/services/notification-service.ts: create NotificationState object and dispatch ADD_NOTIFICATION action
-- [ ] T022 [P] [US1] Create NotificationPopup component in app/components/notifications/NotificationPopup.tsx using ShadCN UI Sonner/Toast
-- [ ] T023 [US1] Implement notification display in app/components/notifications/NotificationPopup.tsx: show event title and scheduled time, mobile-responsive design (iPhone 15 optimized)
-- [ ] T024 [US1] Create audio service in app/lib/services/notification-service.ts: playNotificationSound() using HTML5 Audio API
-- [ ] T025 [US1] Add notification sound file to public/sounds/notification.mp3 (short, pleasant sound < 2 seconds)
-- [ ] T026 [US1] Integrate audio playback in app/lib/services/notification-service.ts: play sound by default when notification triggers, handle browser autoplay policies
-- [ ] T027 [US1] Create NotificationManager client component in app/components/notifications/NotificationManager.tsx that initializes EventMonitor on mount
-- [ ] T028 [US1] Implement tab visibility check in app/lib/services/event-monitor.ts: only trigger notifications when browser tab is active (FR-006 requirement)
-- [ ] T029 [US1] Add NotificationManager to app layout in app/layout.tsx to start event monitoring when app loads
-- [ ] T030 [US1] Implement multiple simultaneous notifications support in app/components/notifications/NotificationList.tsx: display up to 10 notifications (SC-004 requirement)
+- [X] T016 [P] [US1] Create EventMonitor service class in app/lib/services/event-monitor.ts with startMonitoring() and stopMonitoring() methods
+- [X] T017 [US1] Implement polling logic in app/lib/services/event-monitor.ts: setInterval every 60 seconds, check localStorage for events
+- [X] T018 [US1] Implement time window check in app/lib/services/event-monitor.ts: filter events where startTime falls within ±5 seconds of current time
+- [X] T019 [US1] Implement duplicate prevention in app/lib/services/event-monitor.ts: track notified events by eventId + time window to prevent duplicate notifications
+- [X] T020 [US1] Create NotificationService class in app/lib/services/notification-service.ts with triggerNotification(event) method
+- [X] T021 [US1] Implement notification creation in app/lib/services/notification-service.ts: create NotificationState object and dispatch ADD_NOTIFICATION action
+- [X] T022 [P] [US1] Create NotificationPopup component in app/components/notifications/NotificationPopup.tsx using ShadCN UI Sonner/Toast
+- [X] T023 [US1] Implement notification display in app/components/notifications/NotificationPopup.tsx: show event title and scheduled time, mobile-responsive design (iPhone 15 optimized)
+- [X] T024 [US1] Create audio service in app/lib/services/notification-service.ts: playNotificationSound() using HTML5 Audio API
+- [X] T025 [US1] Add notification sound file to public/sounds/notification.mp3 (short, pleasant sound < 2 seconds)
+- [X] T026 [US1] Integrate audio playback in app/lib/services/notification-service.ts: play sound by default when notification triggers, handle browser autoplay policies
+- [X] T027 [US1] Create NotificationManager client component in app/components/notifications/NotificationManager.tsx that initializes EventMonitor on mount
+- [X] T028 [US1] Implement tab visibility check in app/lib/services/event-monitor.ts: only trigger notifications when browser tab is active (FR-006 requirement)
+- [X] T029 [US1] Add NotificationManager to app layout in app/layout.tsx to start event monitoring when app loads
+- [X] T030 [US1] Implement multiple simultaneous notifications support in app/components/notifications/NotificationList.tsx: display up to 10 notifications (SC-004 requirement)
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently. Users can receive notifications when event times arrive.
 

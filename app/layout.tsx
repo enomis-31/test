@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { NotificationProvider } from '@/app/lib/hooks/use-notifications';
+import { NotificationManager } from '@/app/components/notifications/NotificationManager';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <NotificationProvider>
           {children}
+          <NotificationManager />
         </NotificationProvider>
       </body>
     </html>
