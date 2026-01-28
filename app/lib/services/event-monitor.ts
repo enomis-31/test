@@ -6,12 +6,14 @@ import { createLogger } from '@/app/lib/utils/logger';
 const logger = createLogger('EventMonitor');
 
 /**
- * Callback type for when events need notifications
+ * Callback function type for when events need notifications.
+ * Called by EventMonitor when an event's start time falls within the notification window.
  */
 type NotificationCallback = (event: CalendarEvent) => void;
 
 /**
- * Callback type for tab visibility check
+ * Callback function type for checking if the browser tab is currently active/visible.
+ * Should return true if tab is visible, false otherwise.
  */
 type VisibilityCallback = () => boolean;
 
@@ -29,6 +31,7 @@ export class EventMonitor {
 
   /**
    * Sets the callback to be called when a notification should be triggered.
+   * @param callback - Function to call when an event needs a notification
    */
   setNotificationCallback(callback: NotificationCallback): void {
     logger.debug('Setting notification callback');
@@ -37,6 +40,7 @@ export class EventMonitor {
 
   /**
    * Sets the callback to check if the browser tab is active.
+   * @param callback - Function that returns true if tab is visible, false otherwise
    */
   setVisibilityCallback(callback: VisibilityCallback): void {
     logger.debug('Setting visibility callback');
@@ -199,6 +203,8 @@ export class EventMonitor {
   /**
    * Generates a unique key for an event notification.
    * Includes a time bucket to prevent re-notifying for the same event.
+   * @param event - The calendar event to generate a key for
+   * @returns Unique notification key string combining event ID and time bucket
    */
   private getNotificationKey(event: CalendarEvent): string {
     // Create a time bucket based on the event's start time
@@ -210,6 +216,7 @@ export class EventMonitor {
 
   /**
    * Cleans up old notification keys to prevent memory leaks.
+   * Removes notification keys older than 10 minutes.
    */
   private cleanupNotifiedEventIds(): void {
     try {
@@ -279,9 +286,13 @@ export class EventMonitor {
   }
 }
 
-// Singleton instance for easy access
+/** Singleton instance for easy access */
 let eventMonitorInstance: EventMonitor | null = null;
 
+/**
+ * Gets or creates the singleton EventMonitor instance.
+ * @returns The EventMonitor instance (creates one if it doesn't exist)
+ */
 export function getEventMonitor(): EventMonitor {
   if (!eventMonitorInstance) {
     logger.debug('Creating new EventMonitor instance', {

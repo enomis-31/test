@@ -31,12 +31,18 @@ export function NotificationManager() {
     clearOldNotifications,
   } = useNotifications();
 
-  const isInitialized = useRef(false);
-  const eventMonitorRef = useRef(getEventMonitor());
+  /** Flag to prevent multiple initializations */
+  const isInitialized = useRef<boolean>(false);
+  /** Reference to the EventMonitor instance */
+  const eventMonitorRef = useRef<ReturnType<typeof getEventMonitor>>(getEventMonitor());
 
-  // Handle notification callback
+  /**
+   * Handles notification callback from EventMonitor.
+   * Adds notification to state and plays sound.
+   * @param event - The calendar event that triggered the notification
+   */
   const handleNotification = useCallback(
-    async (event: CalendarEvent) => {
+    async (event: CalendarEvent): Promise<void> => {
       logger.info('Handling notification for event', {
         function: 'handleNotification',
         eventId: event.id,
@@ -68,8 +74,11 @@ export function NotificationManager() {
     [addNotification]
   );
 
-  // Check if tab is visible
-  const isTabActive = useCallback(() => {
+  /**
+   * Checks if the browser tab is currently visible/active.
+   * @returns true if tab is visible, false otherwise
+   */
+  const isTabActive = useCallback((): boolean => {
     if (typeof document === 'undefined') {
       return false;
     }
@@ -147,7 +156,10 @@ export function NotificationManager() {
       function: 'useEffect[visibility]',
     });
 
-    const handleVisibilityChange = () => {
+    /**
+     * Handles visibility change events to trigger immediate event check when tab becomes active.
+     */
+    const handleVisibilityChange = (): void => {
       const isVisible = document.visibilityState === 'visible';
       logger.debug('Visibility state changed', {
         function: 'handleVisibilityChange',

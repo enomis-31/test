@@ -13,11 +13,19 @@ import {
 import { Button } from '@/app/components/ui/button';
 import { Calendar, Clock, FileText, AlertCircle, Loader2 } from 'lucide-react';
 
+/**
+ * Props for the EventDetailsModal component.
+ */
 interface EventDetailsModalProps {
+  /** Calendar event to display details for, or null if no event is selected */
   event: CalendarEvent | null;
+  /** Whether the modal is currently open and visible */
   isOpen: boolean;
+  /** Callback function called when the modal should be closed */
   onClose: () => void;
+  /** Optional flag indicating if event data is currently being loaded */
   isLoading?: boolean;
+  /** Optional error message to display if event loading failed */
   error?: string | null;
 }
 
@@ -28,9 +36,12 @@ export function EventDetailsModal({
   isLoading = false,
   error = null,
 }: EventDetailsModalProps) {
-  // Handle Escape key
+  /**
+   * Handles Escape key press to close the modal.
+   * @param e - Keyboard event
+   */
   const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
+    (e: KeyboardEvent): void => {
       if (e.key === 'Escape' && isOpen) {
         onClose();
       }

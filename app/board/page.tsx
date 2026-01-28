@@ -22,9 +22,12 @@ const DEFAULT_USERS: User[] = [
 
 /**
  * Board page component with user filtering functionality.
+ * Displays a Kanban board with cards that can be filtered by assigned user.
+ * Shows workload indicators and user status badges.
+ * @returns JSX element for the board page
  */
 export default function BoardPage() {
-  // Load users from storage or use defaults
+  /** State for managing users (loaded from storage or defaults) */
   const [users] = useState<User[]>(() => {
     if (typeof window !== 'undefined') {
       const saved = loadFromStorage<User[]>(STORAGE_KEY_USERS, DEFAULT_USERS);
@@ -33,7 +36,7 @@ export default function BoardPage() {
     return DEFAULT_USERS;
   });
 
-  // Load cards from storage
+  /** State for managing cards (loaded from storage) */
   const [cards, setCards] = useState<Card[]>(() => {
     if (typeof window !== 'undefined') {
       return loadFromStorage<Card[]>(STORAGE_KEY_CARDS, []);
@@ -57,12 +60,12 @@ export default function BoardPage() {
     clearFilter,
   } = useUserFilter(cards);
 
-  // Calculate workloads for all users
+  /** Calculated workloads for all users based on card assignments */
   const workloads = useMemo(() => {
     return WorkloadCalculator.calculateUserWorkloads(cards, users);
   }, [cards, users]);
 
-  // Get selected user name for display
+  /** Currently selected user object (null if no filter is active) */
   const selectedUser = useMemo(() => {
     if (!selectedUserId) return null;
     return users.find((u) => u.id === selectedUserId) || null;

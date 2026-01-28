@@ -2,8 +2,11 @@
 
 import { Badge } from '@/app/components/ui/badge';
 
+/**
+ * Props for the UserStatusBadge component.
+ */
 interface UserStatusBadgeProps {
-  /** User status: "OK" or "Busy" */
+  /** User workload status: "OK" (≤3 cards) or "Busy" (>3 cards) */
   status: 'OK' | 'Busy';
 }
 
