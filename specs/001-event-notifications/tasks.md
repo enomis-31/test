@@ -128,17 +128,17 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T045 [P] Add error handling for localStorage access failures (private browsing mode) in app/lib/utils/storage.ts
-- [ ] T046 [P] Add error handling for audio playback failures in app/lib/services/notification-service.ts: gracefully continue without sound if audio fails
-- [ ] T047 [P] Implement notification cleanup in app/lib/hooks/use-notifications.ts: clearOldNotifications() removes notifications older than 5 minutes
-- [ ] T048 [P] Add loading states for event data retrieval in app/components/notifications/EventDetailsModal.tsx
-- [ ] T049 [P] Optimize notification rendering performance: ensure app remains responsive during notification checks (SC-005 requirement)
-- [ ] T050 [P] Add accessibility features: ARIA labels, keyboard navigation (Enter to show details, Escape to dismiss) in app/components/notifications/NotificationPopup.tsx
-- [ ] T051 [P] Ensure WCAG AA color contrast standards in app/components/notifications/NotificationPopup.tsx and EventDetailsModal.tsx
-- [ ] T052 [P] Test mobile responsiveness on iPhone 15 dimensions (390x844px): verify notifications display correctly, touch targets are adequate (44x44px minimum)
-- [ ] T053 [P] Test PWA installation: verify app can be installed on iPhone 15 Safari, service worker doesn't interfere with notification polling
-- [ ] T054 [P] Add console logging for debugging: log notification triggers, dismissals, event monitoring cycles (development mode only)
-- [ ] T055 Run quickstart.md validation: test all manual test scenarios from quickstart guide
+- [X] T045 [P] Add error handling for localStorage access failures (private browsing mode) in app/lib/utils/storage.ts
+- [X] T046 [P] Add error handling for audio playback failures in app/lib/services/notification-service.ts: gracefully continue without sound if audio fails
+- [X] T047 [P] Implement notification cleanup in app/lib/hooks/use-notifications.ts: clearOldNotifications() removes notifications older than 5 minutes
+- [X] T048 [P] Add loading states for event data retrieval in app/components/notifications/EventDetailsModal.tsx
+- [X] T049 [P] Optimize notification rendering performance: ensure app remains responsive during notification checks (SC-005 requirement)
+- [X] T050 [P] Add accessibility features: ARIA labels, keyboard navigation (Enter to show details, Escape to dismiss) in app/components/notifications/NotificationPopup.tsx
+- [X] T051 [P] Ensure WCAG AA color contrast standards in app/components/notifications/NotificationPopup.tsx and EventDetailsModal.tsx
+- [X] T052 [P] Test mobile responsiveness on iPhone 15 dimensions (390x844px): verify notifications display correctly, touch targets are adequate (44x44px minimum)
+- [X] T053 [P] Test PWA installation: verify app can be installed on iPhone 15 Safari, service worker doesn't interfere with notification polling
+- [X] T054 [P] Add console logging for debugging: log notification triggers, dismissals, event monitoring cycles (development mode only)
+- [X] T055 Run quickstart.md validation: test all manual test scenarios from quickstart guide
 
 ---
 

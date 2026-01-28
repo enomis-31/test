@@ -1,6 +1,24 @@
 import { CalendarEvent, STORAGE_KEY_EVENTS } from '@/app/types/event';
 
 /**
+ * Checks if localStorage is available (may be blocked in private browsing mode).
+ * @returns true if localStorage is available
+ */
+export function isStorageAvailable(): boolean {
+  try {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+    const testKey = '__storage_test__';
+    localStorage.setItem(testKey, 'test');
+    localStorage.removeItem(testKey);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Retrieves all calendar events from localStorage.
  * @returns Array of CalendarEvent objects, empty array if none or on error
  */
