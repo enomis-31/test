@@ -1,6 +1,9 @@
 import { CalendarEvent } from '@/app/types/event';
 import { getEventsInTimeWindow } from '@/app/lib/utils/storage';
 import { isEventTimeInWindow } from '@/app/lib/utils/date-utils';
+import { createLogger } from '@/app/lib/utils/logger';
+
+const logger = createLogger('EventMonitor');
 
 /**
  * Callback type for when events need notifications
@@ -28,6 +31,7 @@ export class EventMonitor {
    * Sets the callback to be called when a notification should be triggered.
    */
   setNotificationCallback(callback: NotificationCallback): void {
+    logger.debug('Setting notification callback');
     this.notificationCallback = callback;
   }
 
@@ -35,6 +39,7 @@ export class EventMonitor {
    * Sets the callback to check if the browser tab is active.
    */
   setVisibilityCallback(callback: VisibilityCallback): void {
+    logger.debug('Setting visibility callback');
     this.isTabActiveCallback = callback;
   }
 
@@ -43,13 +48,17 @@ export class EventMonitor {
    * Begins polling localStorage for events every 60 seconds.
    */
   startMonitoring(): void {
-    if (this.intervalId) {
-      console.warn('[EventMonitor] Already monitoring');
-      return;
-    }
+    logger.info('Starting event monitoring', {
+      function: 'startMonitoring',
+      pollingIntervalMs: this.pollingIntervalMs,
+      timeWindowSeconds: this.timeWindowSeconds,
+    });
 
-    if (process.env.NODE_ENV === 'development') {
-      console.log('[EventMonitor] Starting monitoring...');
+    if (this.intervalId) {
+      logger.warn('Monitoring already started, ignoring duplicate call', {
+        function: 'startMonitoring',
+      });
+      return;
     }
 
     // Do an immediate check
@@ -59,19 +68,30 @@ export class EventMonitor {
     this.intervalId = setInterval(() => {
       this.checkEventsForNotifications();
     }, this.pollingIntervalMs);
+
+    logger.debug('Monitoring started successfully', {
+      function: 'startMonitoring',
+    });
   }
 
   /**
    * Stops the event monitoring process.
    */
   stopMonitoring(): void {
+    logger.info('Stopping event monitoring', {
+      function: 'stopMonitoring',
+    });
+
     if (this.intervalId) {
       clearInterval(this.intervalId);
       this.intervalId = null;
-      
-      if (process.env.NODE_ENV === 'development') {
-        console.log('[EventMonitor] Stopped monitoring');
-      }
+      logger.debug('Monitoring stopped successfully', {
+        function: 'stopMonitoring',
+      });
+    } else {
+      logger.debug('No active monitoring to stop', {
+        function: 'stopMonitoring',
+      });
     }
   }
 
@@ -80,11 +100,15 @@ export class EventMonitor {
    * whose start time falls within ±5 seconds of current time.
    */
   checkEventsForNotifications(): void {
+    logger.debug('Checking events for notifications', {
+      function: 'checkEventsForNotifications',
+    });
+
     // Check if tab is active (FR-006)
     if (this.isTabActiveCallback && !this.isTabActiveCallback()) {
-      if (process.env.NODE_ENV === 'development') {
-        console.log('[EventMonitor] Tab is not active, skipping check');
-      }
+      logger.debug('Tab is not active, skipping check', {
+        function: 'checkEventsForNotifications',
+      });
       return;
     }
 
@@ -92,39 +116,76 @@ export class EventMonitor {
       // Get events in the time window
       const eventsInWindow = getEventsInTimeWindow(this.timeWindowSeconds * 1000);
 
-      if (process.env.NODE_ENV === 'development' && eventsInWindow.length > 0) {
-        console.log('[EventMonitor] Found events in window:', eventsInWindow);
+      logger.debug('Events check completed', {
+        function: 'checkEventsForNotifications',
+        eventsFound: eventsInWindow.length,
+      });
+
+      if (eventsInWindow.length > 0) {
+        logger.info('Found events in notification window', {
+          function: 'checkEventsForNotifications',
+          eventCount: eventsInWindow.length,
+          eventIds: eventsInWindow.map((e) => e.id),
+        });
       }
 
+      let notificationsTriggered = 0;
       for (const event of eventsInWindow) {
         // Create a unique key for this event + time window to prevent duplicates
         const notificationKey = this.getNotificationKey(event);
 
         // Check if we've already notified for this event in this time window
         if (this.notifiedEventIds.has(notificationKey)) {
+          logger.debug('Event already notified, skipping', {
+            function: 'checkEventsForNotifications',
+            eventId: event.id,
+            notificationKey,
+          });
           continue;
         }
 
         // Verify the event is actually in the time window
         if (!isEventTimeInWindow(event.startTime, this.timeWindowSeconds)) {
+          logger.debug('Event not in time window, skipping', {
+            function: 'checkEventsForNotifications',
+            eventId: event.id,
+            startTime: event.startTime,
+          });
           continue;
         }
 
         // Trigger notification
         if (this.notificationCallback) {
+          logger.info('Triggering notification for event', {
+            function: 'checkEventsForNotifications',
+            eventId: event.id,
+            eventTitle: event.title,
+            startTime: event.startTime,
+          });
           this.notificationCallback(event);
           this.notifiedEventIds.add(notificationKey);
-
-          if (process.env.NODE_ENV === 'development') {
-            console.log('[EventMonitor] Triggered notification for event:', event.title);
-          }
+          notificationsTriggered++;
+        } else {
+          logger.warn('No notification callback set, cannot trigger notification', {
+            function: 'checkEventsForNotifications',
+            eventId: event.id,
+          });
         }
+      }
+
+      if (notificationsTriggered > 0) {
+        logger.info('Notifications triggered', {
+          function: 'checkEventsForNotifications',
+          count: notificationsTriggered,
+        });
       }
 
       // Clean up old notification keys (older than 1 minute)
       this.cleanupNotifiedEventIds();
     } catch (error) {
-      console.error('[EventMonitor] Error checking events:', error);
+      logger.error('Error checking events for notifications', error, {
+        function: 'checkEventsForNotifications',
+      });
     }
   }
 
@@ -163,6 +224,9 @@ export class EventMonitor {
    * Manually triggers a check for notifications (useful for testing).
    */
   triggerCheck(): void {
+    logger.debug('Manual check triggered', {
+      function: 'triggerCheck',
+    });
     this.checkEventsForNotifications();
   }
 
@@ -170,7 +234,12 @@ export class EventMonitor {
    * Clears the notified events cache (useful for testing).
    */
   clearNotifiedCache(): void {
+    const cacheSize = this.notifiedEventIds.size;
     this.notifiedEventIds.clear();
+    logger.debug('Cleared notified events cache', {
+      function: 'clearNotifiedCache',
+      clearedCount: cacheSize,
+    });
   }
 }
 
@@ -179,6 +248,9 @@ let eventMonitorInstance: EventMonitor | null = null;
 
 export function getEventMonitor(): EventMonitor {
   if (!eventMonitorInstance) {
+    logger.debug('Creating new EventMonitor instance', {
+      function: 'getEventMonitor',
+    });
     eventMonitorInstance = new EventMonitor();
   }
   return eventMonitorInstance;

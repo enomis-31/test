@@ -10,6 +10,9 @@ import React, {
 import { CalendarEvent, NotificationState } from '@/app/types/event';
 import { generateNotificationId, getCurrentTimeISO } from '@/app/lib/utils/date-utils';
 import { getEventById } from '@/app/lib/utils/storage';
+import { createLogger } from '@/app/lib/utils/logger';
+
+const logger = createLogger('Notifications');
 
 // Action types
 type NotificationAction =
@@ -56,11 +59,19 @@ function notificationReducer(
         (n) => n.eventId === action.payload.eventId && !n.isDismissed
       );
       if (exists) {
+        logger.debug('Duplicate notification prevented', {
+          function: 'notificationReducer',
+          eventId: action.payload.eventId,
+        });
         return state;
       }
       // Limit to 10 notifications max (SC-004)
       const newNotifications = [...state.notifications, action.payload];
       if (newNotifications.length > 10) {
+        logger.debug('Notification limit reached, removing oldest', {
+          function: 'notificationReducer',
+          totalNotifications: newNotifications.length,
+        });
         newNotifications.shift(); // Remove oldest
       }
       return {
@@ -83,10 +94,21 @@ function notificationReducer(
         (n) => n.id === action.payload
       );
       if (!notification) {
+        logger.warn('Notification not found for showing details', {
+          function: 'notificationReducer',
+          notificationId: action.payload,
+        });
         return state;
       }
       // Get full event details from storage
       const event = getEventById(notification.eventId);
+      if (!event) {
+        logger.warn('Event not found in storage', {
+          function: 'notificationReducer',
+          notificationId: action.payload,
+          eventId: notification.eventId,
+        });
+      }
       return {
         ...state,
         selectedEventDetails: event,
@@ -146,6 +168,12 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
   const [state, dispatch] = useReducer(notificationReducer, initialState);
 
   const addNotification = useCallback((event: CalendarEvent) => {
+    logger.debug('Adding notification', {
+      function: 'addNotification',
+      eventId: event.id,
+      eventTitle: event.title,
+    });
+
     const notification: NotificationState = {
       id: generateNotificationId(),
       eventId: event.id,
@@ -159,38 +187,81 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
     };
     dispatch({ type: 'ADD_NOTIFICATION', payload: notification });
     
-    if (process.env.NODE_ENV === 'development') {
-      console.log('[Notifications] Added notification:', notification);
-    }
+    logger.info('Notification added', {
+      function: 'addNotification',
+      notificationId: notification.id,
+      eventId: event.id,
+      eventTitle: event.title,
+    });
   }, []);
 
   const dismissNotification = useCallback((notificationId: string) => {
+    logger.debug('Dismissing notification', {
+      function: 'dismissNotification',
+      notificationId,
+    });
+
     dispatch({ type: 'DISMISS_NOTIFICATION', payload: notificationId });
     
-    if (process.env.NODE_ENV === 'development') {
-      console.log('[Notifications] Dismissed notification:', notificationId);
-    }
+    logger.info('Notification dismissed', {
+      function: 'dismissNotification',
+      notificationId,
+    });
   }, []);
 
   const showEventDetails = useCallback((notificationId: string) => {
+    logger.debug('Showing event details', {
+      function: 'showEventDetails',
+      notificationId,
+    });
+
     dispatch({ type: 'SHOW_EVENT_DETAILS', payload: notificationId });
     
-    if (process.env.NODE_ENV === 'development') {
-      console.log('[Notifications] Showing event details for:', notificationId);
-    }
+    logger.info('Event details shown', {
+      function: 'showEventDetails',
+      notificationId,
+    });
   }, []);
 
   const hideEventDetails = useCallback(() => {
+    logger.debug('Hiding event details', {
+      function: 'hideEventDetails',
+    });
+
     dispatch({ type: 'HIDE_EVENT_DETAILS' });
+    
+    logger.debug('Event details hidden', {
+      function: 'hideEventDetails',
+    });
   }, []);
 
   const muteSound = useCallback((notificationId: string) => {
+    logger.debug('Muting sound for notification', {
+      function: 'muteSound',
+      notificationId,
+    });
+
     dispatch({ type: 'MUTE_SOUND', payload: notificationId });
+    
+    logger.debug('Sound muted for notification', {
+      function: 'muteSound',
+      notificationId,
+    });
   }, []);
 
   const clearOldNotifications = useCallback((maxAgeMs: number = 300000) => {
     // Default: 5 minutes
+    logger.debug('Clearing old notifications', {
+      function: 'clearOldNotifications',
+      maxAgeMs,
+    });
+
     dispatch({ type: 'CLEAR_OLD_NOTIFICATIONS', payload: maxAgeMs });
+    
+    logger.debug('Old notifications cleared', {
+      function: 'clearOldNotifications',
+      maxAgeMs,
+    });
   }, []);
 
   const value: NotificationContextValue = {
@@ -212,8 +283,15 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
 
 // Custom hook to use notifications
 export function useNotifications(): NotificationContextValue {
+  logger.debug('Using notifications hook', {
+    function: 'useNotifications',
+  });
+
   const context = useContext(NotificationContext);
   if (context === undefined) {
+    logger.error('useNotifications called outside NotificationProvider', undefined, {
+      function: 'useNotifications',
+    });
     throw new Error(
       'useNotifications must be used within a NotificationProvider'
     );
